@@ -1,9 +1,10 @@
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, View } from "react-native";
+import CapyCard from "../components/CapyCard";
 
 export default function HomeScreen() {
   return (
     <View style={styles.container}>
-      <Text>HOME</Text>
+      <CapyCard />
     </View>
   );
 }
