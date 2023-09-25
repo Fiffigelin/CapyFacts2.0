@@ -7,23 +7,17 @@ interface Props {
   id: number;
 }
 
-export default function CapyCard() {
-  const randomIndex = Math.floor(Math.random() * cards.length);
-  const randomCard = cards[randomIndex];
-  console.log(randomCard);
+export default function FavoriteCard({ props }: Props) {
+  const id = props;
+  const capy = cards.find((card) => card.id === id);
 
   return (
     <View style={styles.cardContainer}>
       <Card>
         <Card.Cover
-          source={{ uri: randomCard?.image }}
-          style={{ width: 375, height: 375, objectFit: "contain" }}
+          source={{ uri: capy?.image }}
+          style={{ width: 200, height: 200, objectFit: "contain" }}
         />
-        <Card.Content>
-          <Text style={{ fontSize: 24, textAlign: "justify" }}>
-            {randomCard?.fact}
-          </Text>
-        </Card.Content>
       </Card>
     </View>
   );
@@ -39,9 +33,9 @@ const styles = StyleSheet.create({
   },
   cardContainer: {
     backgroundColor: "#fff",
-    padding: 20,
+    padding: 2,
     alignItems: "center",
     justifyContent: "center",
-    marginTop: 30,
+    marginTop: 2,
   },
 });
