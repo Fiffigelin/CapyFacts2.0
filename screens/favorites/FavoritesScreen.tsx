@@ -1,9 +1,18 @@
 import { StyleSheet, Button, View } from "react-native";
+import { FavoriteStackScreens } from "../../navigators/FavoritesStackNavigator";
+import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 
-export default function FavoritesScreen() {
+type FavoritesScreenProps = {
+  navigation: NativeStackNavigationProp<FavoriteStackScreens, "Favorites">;
+};
+
+export default function FavoritesScreen(props: FavoritesScreenProps) {
   return (
     <View style={styles.container}>
-      <Button title="A fav" />
+      <Button
+        title="A fav"
+        onPress={() => props.navigation.navigate("Detail")}
+      />
     </View>
   );
 }

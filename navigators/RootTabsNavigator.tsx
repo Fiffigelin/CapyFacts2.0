@@ -2,7 +2,7 @@ import React from "react";
 import { MaterialIcons } from "@expo/vector-icons";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import HomeScreen from "../screens/HomeScreen";
-import FavoritesScreen from "../screens/favorites/FavoritesScreen";
+import FavoritesStackNavigator from "./FavoritesStackNavigator";
 
 type RootTabScreens = {
   HomeTab: undefined;
@@ -26,9 +26,10 @@ export default function RootTabsNavigator() {
       />
       <Tabs.Screen
         name="FavoritesTab"
-        component={FavoritesScreen}
+        component={FavoritesStackNavigator}
         options={{
           title: "Favorites",
+          headerShown: false,
           tabBarIcon: (props) => (
             <MaterialIcons
               name="favorite-outline"
