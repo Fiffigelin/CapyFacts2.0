@@ -2,10 +2,11 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import React from "react";
 import FavoriteDetailScreen from "../screens/favorites/FavoriteDetailScreen";
 import FavoritesScreen from "../screens/favorites/FavoritesScreen";
+import { Capy } from "../data";
 
 export type FavoriteStackScreens = {
   Favorites: undefined;
-  Detail: undefined;
+  Detail: { selectedCard: Capy };
 };
 
 const Stack = createNativeStackNavigator<FavoriteStackScreens>();

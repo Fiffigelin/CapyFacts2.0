@@ -12,10 +12,8 @@ type DetailScreenProps = {
   route: DetailScreenRouteProp;
 };
 
-export default function FavoriteDetailScreen(props: DetailScreenProps) {
-  const selectedCard = props.route.params
-    ? (props.route.params as { selectedCard: Capy }).selectedCard
-    : null;
+export default function FavoriteDetailScreen({ route }: DetailScreenProps) {
+  const { selectedCard } = route.params;
 
   return (
     <View style={styles.container}>

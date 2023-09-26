@@ -5,11 +5,11 @@ import React from "react";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import RootTabsNavigator from "./navigators/RootTabsNavigator";
 
-type RootTabScreens = {
-  HomeTab: undefined;
-  FavoritesTab: undefined;
-};
-const Tabs = createBottomTabNavigator<RootTabScreens>();
+// type RootTabScreens = {
+//   HomeTab: undefined;
+//   FavoritesTab: undefined;
+// };
+// const Tabs = createBottomTabNavigator<RootTabScreens>();
 
 export default function App() {
   return (

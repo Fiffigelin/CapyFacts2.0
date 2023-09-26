@@ -4,12 +4,13 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import HomeScreen from "../screens/HomeScreen";
 import FavoritesStackNavigator from "./FavoritesStackNavigator";
 
-type RootTabScreens = {
-  HomeTab: undefined;
-  FavoritesTab: undefined;
-};
+// type RootTabScreens = {
+//   HomeTab: undefined;
+//   FavoritesTab: undefined;
+// };
 
-const Tabs = createBottomTabNavigator<RootTabScreens>();
+// const Tabs = createBottomTabNavigator<RootTabScreens>();
+const Tabs = createBottomTabNavigator();
 
 export default function RootTabsNavigator() {
   return (

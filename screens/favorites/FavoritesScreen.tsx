@@ -16,7 +16,7 @@ function arrayChunk<T>(array: T[], chunkSize: number): T[][] {
   return chunkedArray;
 }
 
-export default function FavoritesScreen(props: FavoritesScreenProps) {
+export default function FavoritesScreen({ navigation }: FavoritesScreenProps) {
   const { data } = useMockedData(); // hämtar datan via min hook
   const chunkedCards = arrayChunk(data, 3);
 
@@ -31,9 +31,9 @@ export default function FavoritesScreen(props: FavoritesScreenProps) {
               <TouchableOpacity
                 key={card.id}
                 onPress={() =>
-                  props.navigation.navigate("Detail", {
+                  navigation.navigate("Detail", {
                     selectedCard: card,
-                  } as any)
+                  })
                 }
               >
                 <FavoriteCard selectedCard={card} />
