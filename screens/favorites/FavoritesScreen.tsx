@@ -1,8 +1,8 @@
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { FlatList, StyleSheet, TouchableOpacity, View } from "react-native";
 import FavoriteCard from "../../components/FavoriteCard";
-import { cards } from "../../data";
 import { FavoriteStackScreens } from "../../navigators/FavoritesStackNavigator";
+import { useMockedData } from "../../hooks/useSelectedData";
 
 type FavoritesScreenProps = {
   navigation: NativeStackNavigationProp<FavoriteStackScreens, "Favorites">;
@@ -17,7 +17,8 @@ function arrayChunk<T>(array: T[], chunkSize: number): T[][] {
 }
 
 export default function FavoritesScreen(props: FavoritesScreenProps) {
-  const chunkedCards = arrayChunk(cards, 3);
+  const { data } = useMockedData(); // hämtar datan via min hook
+  const chunkedCards = arrayChunk(data, 3);
 
   return (
     <View style={styles.container}>
@@ -31,12 +32,11 @@ export default function FavoritesScreen(props: FavoritesScreenProps) {
                 key={card.id}
                 onPress={() =>
                   props.navigation.navigate("Detail", {
-                    id: card.id,
-                    key: card.id,
-                  })
+                    selectedCard: card,
+                  } as any)
                 }
               >
-                <FavoriteCard props={card.id} />
+                <FavoriteCard selectedCard={card} />
               </TouchableOpacity>
             ))}
           </View>

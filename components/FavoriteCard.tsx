@@ -5,13 +5,10 @@ import { Image } from "expo-image";
 import { Capy, cards } from "../data";
 
 interface Props {
-  id: number;
+  selectedCard: Capy;
 }
 
-export default function FavoriteCard({ props }: Props) {
-  const id = props;
-  const capy = cards.find((card) => card.id === id);
-
+export default function FavoriteCard({ selectedCard }: Props) {
   return (
     <View style={styles.cardContainer}>
       <Image
@@ -21,7 +18,7 @@ export default function FavoriteCard({ props }: Props) {
           objectFit: "contain",
           borderRadius: 8,
         }}
-        source={capy?.image}
+        source={selectedCard.image}
       />
     </View>
   );
