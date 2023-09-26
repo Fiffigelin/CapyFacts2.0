@@ -1,8 +1,7 @@
-import React from "react";
-import { Text, View, StyleSheet } from "react-native";
-import { Card } from "react-native-paper";
 import { Image } from "expo-image";
-import { Capy, cards } from "../data";
+import React from "react";
+import { StyleSheet, View } from "react-native";
+import { Capy } from "../../data";
 
 interface Props {
   selectedCard: Capy;

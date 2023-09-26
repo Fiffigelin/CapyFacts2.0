@@ -1,6 +1,6 @@
-import React from "react";
 import { MaterialIcons } from "@expo/vector-icons";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import React from "react";
 import HomeScreen from "../screens/HomeScreen";
 import FavoritesStackNavigator from "./FavoritesStackNavigator";
 

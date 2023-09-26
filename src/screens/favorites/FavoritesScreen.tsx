@@ -1,8 +1,8 @@
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { FlatList, StyleSheet, TouchableOpacity, View } from "react-native";
 import FavoriteCard from "../../components/FavoriteCard";
-import { FavoriteStackScreens } from "../../navigators/FavoritesStackNavigator";
 import { useMockedData } from "../../hooks/useSelectedData";
+import { FavoriteStackScreens } from "../../navigators/FavoritesStackNavigator";
 
 type FavoritesScreenProps = {
   navigation: NativeStackNavigationProp<FavoriteStackScreens, "Favorites">;

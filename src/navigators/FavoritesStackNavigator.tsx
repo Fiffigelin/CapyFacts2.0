@@ -1,8 +1,8 @@
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import React from "react";
+import { Capy } from "../../data";
 import FavoriteDetailScreen from "../screens/favorites/FavoriteDetailScreen";
 import FavoritesScreen from "../screens/favorites/FavoritesScreen";
-import { Capy } from "../data";
 
 export type FavoriteStackScreens = {
   Favorites: undefined;

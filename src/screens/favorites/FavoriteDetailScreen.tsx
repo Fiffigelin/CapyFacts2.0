@@ -3,7 +3,6 @@ import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
 import { FavoriteStackScreens } from "../../navigators/FavoritesStackNavigator";
-import { Capy } from "../../data";
 
 type DetailScreenRouteProp = RouteProp<FavoriteStackScreens, "Detail">;
 
