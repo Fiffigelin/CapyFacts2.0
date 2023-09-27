@@ -1,26 +1,37 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useEffect, useState } from "react";
 
+type ApiResponse = {
+  data: {
+    alt: string;
+    height: number;
+    index: number;
+    url: string;
+    width: number;
+  };
+  success: boolean;
+};
+
 export default function useImageData() {
   const [imageData, setImageData] = useState<string>();
 
   const fetchRandomImage = async () => {
     try {
-      const response = await fetch("https://api.capy.lol/v1/capybara/random");
-      const data = await response.json();
+      const response = await fetch(
+        "https://api.capy.lol/v1/capybara?json=true"
+      );
+      const data: ApiResponse = await response.json();
 
-      if (data.data && data.data.length > 0) {
-        const randomImage = data.data[0];
-        const imageUrl: string = randomImage.url;
-
+      if (data.success) {
+        const imageUrl = data.data.url;
         await AsyncStorage.setItem("dailyImage", imageUrl);
-
+        console.log(imageUrl);
         setImageData(imageUrl);
       } else {
-        console.error("No image data found.");
+        console.error("Api request failed");
       }
     } catch (error) {
-      console.error("Error fetching random image:", error);
+      console.error("Error fetching image: ", error);
     }
   };
 

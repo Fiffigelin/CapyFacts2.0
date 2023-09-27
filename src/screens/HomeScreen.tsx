@@ -1,15 +1,13 @@
 import { StyleSheet, View } from "react-native";
 import CapyCard from "../components/CapyCard";
-import { cards } from "../../data";
-
-const randomIndex = Math.floor(Math.random() * cards.length);
-const randomCard = cards[randomIndex];
-console.log(randomCard);
+import useImageData from "../hooks/useImageData";
 
 export default function HomeScreen() {
+  const { imageData, refetch } = useImageData();
+
   return (
     <View style={styles.container}>
-      <CapyCard capyFact={randomCard} />
+      <CapyCard imageData={imageData} />
     </View>
   );
 }

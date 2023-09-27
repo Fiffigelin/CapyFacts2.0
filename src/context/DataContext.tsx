@@ -31,7 +31,9 @@ export function DataProvider(props: PropsWithChildren) {
 
   async function getData() {
     try {
-      await refetch();
+      if (!imageData) {
+        await refetch();
+      }
       const newDailyFact = {
         id: 1,
         image: imageData || "",
@@ -57,7 +59,7 @@ export function DataProvider(props: PropsWithChildren) {
 
   useEffect(() => {
     getData();
-  });
+  }, []);
 
   return (
     <DataContext.Provider

@@ -1,24 +1,25 @@
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
 import { Card } from "react-native-paper";
+import { Capy } from "../../data";
 
-type Props = {
-  imageData: string | undefined;
-};
+interface Props {
+  capyFact: Capy;
+}
 
-export default function CapyCard({ imageData }: Props) {
+export default function CapyCardDetail({ capyFact }: Props) {
   return (
     <View style={styles.cardContainer}>
       <Card>
         <Card.Cover
-          source={{ uri: imageData }}
+          source={{ uri: capyFact?.image }}
           style={{ width: 375, height: 375, objectFit: "contain" }}
         />
-        {/* <Card.Content>
+        <Card.Content>
           <Text style={{ fontSize: 24, textAlign: "justify" }}>
-            {capyFact.fact}
+            {capyFact?.fact}
           </Text>
-        </Card.Content> */}
+        </Card.Content>
       </Card>
     </View>
   );

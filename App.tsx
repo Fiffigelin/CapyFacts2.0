@@ -3,20 +3,17 @@ import { StatusBar } from "expo-status-bar";
 import React from "react";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import RootTabsNavigator from "./src/navigators/RootTabsNavigator";
-
-// type RootTabScreens = {
-//   HomeTab: undefined;
-//   FavoritesTab: undefined;
-// };
-// const Tabs = createBottomTabNavigator<RootTabScreens>();
+import { DataProvider } from "./src/context/DataContext";
 
 export default function App() {
   return (
     <SafeAreaProvider>
-      <NavigationContainer>
-        <StatusBar style="auto" />
-        <RootTabsNavigator />
-      </NavigationContainer>
+      <DataProvider>
+        <NavigationContainer>
+          <StatusBar style="auto" />
+          <RootTabsNavigator />
+        </NavigationContainer>
+      </DataProvider>
     </SafeAreaProvider>
   );
 }

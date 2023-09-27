@@ -3,7 +3,7 @@ import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
 import { FavoriteStackScreens } from "../../navigators/FavoritesStackNavigator";
-import CapyCard from "../../components/CapyCard";
+import CapyCardDetail from "../../components/CapyCardDetail";
 
 type DetailScreenRouteProp = RouteProp<FavoriteStackScreens, "Detail">;
 
@@ -18,7 +18,7 @@ export default function FavoriteDetailScreen({ route }: DetailScreenProps) {
   return (
     <View style={styles.container}>
       {selectedCard ? (
-        <CapyCard capyFact={selectedCard} />
+        <CapyCardDetail capyFact={selectedCard} />
       ) : (
         <Text>No selected card</Text>
       )}
