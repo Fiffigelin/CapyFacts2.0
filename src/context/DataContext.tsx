@@ -1,19 +1,21 @@
-import { PropsWithChildren, createContext, useContext, useState } from "react";
+import {
+  PropsWithChildren,
+  createContext,
+  useContext,
+  useEffect,
+  useState,
+} from "react";
+import useImageData from "../hooks/useImageData";
+import { Capy } from "../../data/index";
 
-interface capyFactInterface {
-  id: number;
-  image: string;
-  fact: string;
-}
-
-type capyFact = capyFactInterface;
+// type capyFact = capyFactInterface;
 // ska hooken tillhandahålla interfacet och skicka in all data därifrån?
 
 type DataContext = {
   getData: () => void;
-  postNewFavorite: () => void;
+  newFavorite: () => void;
   deleteFavorite: () => void;
-  getDailyFact: () => void;
+  dailyFact: Capy | null;
 };
 
 const DataContext = createContext({} as DataContext);
@@ -23,14 +25,25 @@ export function useData() {
 }
 
 export function DataProvider(props: PropsWithChildren) {
-  const [dailyFact, setDailyFact] = useState<capyFact>();
-  const [favorites, setFavorites] = useState<capyFact[]>([]);
+  const [dailyFact, setDailyFact] = useState<Capy | null>(null);
+  const [favorites, setFavorites] = useState<Capy[]>([]);
+  const { imageData, refetch } = useImageData();
 
-  function getData() {
-    // här hämtas datan från hooken som talar med apiet och asyncStorage - tror jag :)
+  async function getData() {
+    try {
+      await refetch();
+      const newDailyFact = {
+        id: 1,
+        image: imageData || "",
+        fact: "Lite fakta",
+      };
+      setDailyFact(newDailyFact);
+    } catch (error) {
+      console.error("Error fetching data: ", error);
+    }
   }
 
-  function postNewFavorite() {
+  function newFavorite() {
     // ordna så datan cachas och skickas till asyncStorage och läggs in i statet
   }
 
@@ -38,13 +51,17 @@ export function DataProvider(props: PropsWithChildren) {
     // ta bort favoriten
   }
 
-  function getDailyFact() {
+  function dailyFactCard() {
     // ordna den nya capybara-cardet-infon. hur tusan ska jag ordna detta?
   }
 
+  useEffect(() => {
+    getData();
+  });
+
   return (
     <DataContext.Provider
-      value={{ getData, postNewFavorite, deleteFavorite, getDailyFact }}
+      value={{ getData, newFavorite, deleteFavorite, dailyFact }}
     >
       {props.children}
     </DataContext.Provider>
