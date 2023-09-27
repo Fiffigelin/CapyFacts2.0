@@ -1,23 +1,27 @@
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
 import { Card } from "react-native-paper";
-import { cards } from "../../data";
+import { Capy, cards } from "../../data";
 
-export default function CapyCard() {
-  const randomIndex = Math.floor(Math.random() * cards.length);
-  const randomCard = cards[randomIndex];
-  console.log(randomCard);
+interface Props {
+  capyFact: Capy;
+}
+
+export default function CapyCard({capyFact}: Props ) {
+  // const randomIndex = Math.floor(Math.random() * cards.length);
+  // const randomCard = cards[randomIndex];
+  // console.log(randomCard);
 
   return (
     <View style={styles.cardContainer}>
       <Card>
         <Card.Cover
-          source={{ uri: randomCard?.image }}
+          source={{ uri: capyFact.image }}
           style={{ width: 375, height: 375, objectFit: "contain" }}
         />
         <Card.Content>
           <Text style={{ fontSize: 24, textAlign: "justify" }}>
-            {randomCard?.fact}
+            {capyFact.fact}
           </Text>
         </Card.Content>
       </Card>
