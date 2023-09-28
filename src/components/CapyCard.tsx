@@ -29,7 +29,7 @@ export default function CapyCard({ imageData, factData }: Props) {
       <Card style={styles.cardContainer}>
         <Card.Cover
           source={{ uri: imageData }}
-          style={{ width: 375, height: 375, objectFit: "contain" }}
+          style={{ width: 350, height: 350, objectFit: "contain" }}
         />
         <Card.Content>
           <Text style={{ fontSize: 24, textAlign: "justify" }}>{factData}</Text>
@@ -62,13 +62,13 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
     alignItems: "flex-end",
     justifyContent: "center",
-    padding: 50,
+    padding: 20,
   },
   cardContainer: {
     backgroundColor: "#fff",
     alignItems: "center",
     justifyContent: "center",
-    marginTop: 30,
+    width: 350,
   },
   buttonContainer: {
     flexDirection: "row",
