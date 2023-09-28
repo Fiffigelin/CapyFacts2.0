@@ -3,21 +3,25 @@ import { StyleSheet, Text, View } from "react-native";
 import { Card } from "react-native-paper";
 import { Capy } from "../../data";
 
-interface Props {
-  capyFact: Capy;
-}
+export default function CapyCardDetail({
+  cardProps,
+}: {
+  cardProps: Capy | null;
+}) {
+  if (!cardProps) {
+    return null;
+  }
 
-export default function CapyCardDetail({ capyFact }: Props) {
   return (
     <View style={styles.cardContainer}>
       <Card>
         <Card.Cover
-          source={{ uri: capyFact?.image }}
+          source={{ uri: cardProps?.image }}
           style={{ width: 375, height: 375, objectFit: "contain" }}
         />
         <Card.Content>
           <Text style={{ fontSize: 24, textAlign: "justify" }}>
-            {capyFact?.fact}
+            {cardProps?.fact}
           </Text>
         </Card.Content>
       </Card>

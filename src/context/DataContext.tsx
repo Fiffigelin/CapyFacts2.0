@@ -6,16 +6,22 @@ import {
   useState,
 } from "react";
 import useImageData from "../hooks/useImageData";
-import { Capy } from "../../data/index";
+import useFactData from "../hooks/useFactData";
 
-// type capyFact = capyFactInterface;
-// ska hooken tillhandahålla interfacet och skicka in all data därifrån?
+// Efter handledningen med David : context för dagliga bilden och faktan behövs inte.
+// SKAPA istället en FavoritesContext.tsx som håller tillfälligt datan med alla favoriter
+
+type Capy = {
+  id: string;
+  image: string | undefined;
+  fact: string | undefined;
+};
 
 type DataContext = {
-  getData: () => void;
   newFavorite: () => void;
   deleteFavorite: () => void;
-  dailyFact: Capy | null;
+  dailyFact: Capy | undefined;
+  favorites: Capy[];
 };
 
 const DataContext = createContext({} as DataContext);
@@ -25,19 +31,21 @@ export function useData() {
 }
 
 export function DataProvider(props: PropsWithChildren) {
-  const [dailyFact, setDailyFact] = useState<Capy | null>(null);
+  const [dailyFact, setDailyFact] = useState<Capy | undefined>(undefined);
   const [favorites, setFavorites] = useState<Capy[]>([]);
-  const { imageData, refetch } = useImageData();
+  const { imageData, refetchImage } = useImageData();
+  const { factData, refetchFact } = useFactData();
 
   async function getData() {
     try {
-      if (!imageData) {
-        await refetch();
+      if (!imageData && !factData) {
+        // await refetchImage();
+        // await refetchFact();
       }
       const newDailyFact = {
-        id: 1,
-        image: imageData || "",
-        fact: "Lite fakta",
+        id: "daily",
+        image: imageData || undefined,
+        fact: factData || undefined,
       };
       setDailyFact(newDailyFact);
     } catch (error) {
@@ -50,11 +58,7 @@ export function DataProvider(props: PropsWithChildren) {
   }
 
   function deleteFavorite() {
-    // ta bort favoriten
-  }
-
-  function dailyFactCard() {
-    // ordna den nya capybara-cardet-infon. hur tusan ska jag ordna detta?
+    // ta bort favoriten både i staten OCH i asyncStorage
   }
 
   useEffect(() => {
@@ -63,7 +67,7 @@ export function DataProvider(props: PropsWithChildren) {
 
   return (
     <DataContext.Provider
-      value={{ getData, newFavorite, deleteFavorite, dailyFact }}
+      value={{ newFavorite, deleteFavorite, dailyFact, favorites }}
     >
       {props.children}
     </DataContext.Provider>

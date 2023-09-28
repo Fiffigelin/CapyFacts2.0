@@ -4,9 +4,10 @@ import { Card } from "react-native-paper";
 
 type Props = {
   imageData: string | undefined;
+  factData: string | undefined;
 };
 
-export default function CapyCard({ imageData }: Props) {
+export default function CapyCard({ imageData, factData }: Props) {
   return (
     <View style={styles.cardContainer}>
       <Card>
@@ -14,11 +15,9 @@ export default function CapyCard({ imageData }: Props) {
           source={{ uri: imageData }}
           style={{ width: 375, height: 375, objectFit: "contain" }}
         />
-        {/* <Card.Content>
-          <Text style={{ fontSize: 24, textAlign: "justify" }}>
-            {capyFact.fact}
-          </Text>
-        </Card.Content> */}
+        <Card.Content>
+          <Text style={{ fontSize: 24, textAlign: "justify" }}>{factData}</Text>
+        </Card.Content>
       </Card>
     </View>
   );

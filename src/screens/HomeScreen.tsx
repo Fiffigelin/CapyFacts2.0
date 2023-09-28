@@ -1,13 +1,15 @@
 import { StyleSheet, View } from "react-native";
 import CapyCard from "../components/CapyCard";
+import useFactData from "../hooks/useFactData";
 import useImageData from "../hooks/useImageData";
 
 export default function HomeScreen() {
-  const { imageData, refetch } = useImageData();
+  const { imageData } = useImageData();
+  const { factData } = useFactData();
 
   return (
     <View style={styles.container}>
-      <CapyCard imageData={imageData} />
+      <CapyCard imageData={imageData} factData={factData} />
     </View>
   );
 }
