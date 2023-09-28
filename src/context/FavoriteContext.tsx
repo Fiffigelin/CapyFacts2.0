@@ -15,28 +15,33 @@ type FavoriteContextType = {
   createFavorite: () => void;
   deleteFavorite: (id: string) => void;
   favorites: Favorite[];
+  dailyFavorite: string | undefined;
+  isFavorite: boolean;
+  setIsFavorite: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
 const FavoriteContext = createContext({} as FavoriteContextType);
 
-export function useFavorite() {
+export function useFavoriteContext() {
   return useContext(FavoriteContext);
 }
 
 export function FavoriteProvider(props: PropsWithChildren) {
   const [favorites, setFavorites] = useState<Favorite[]>([]);
+  const [dailyFavorite, setDailyFavorite] = useState<string>();
+  const [isFavorite, setIsFavorite] = useState(false);
   const { imageData, refetchImage } = useImageData();
   const { factData, refetchFact } = useFactData();
   const {
     favoritesData,
-    fetchFavorites,
-    saveFavorite,
-    deleteFavoriteFromAsyncStorage,
+    fetchFavoritesStorage,
+    saveFavoriteStorage,
+    deleteFavoriteStorage,
   } = useFavoriteData();
 
   async function getFavorites() {
     // hämta all cachad data från asyncStorage
-    await fetchFavorites();
+    await fetchFavoritesStorage();
 
     if (favoritesData) {
       setFavorites(favoritesData);
@@ -53,7 +58,8 @@ export function FavoriteProvider(props: PropsWithChildren) {
     };
 
     setFavorites([...favorites, newFavorite]);
-    saveFavorite(newFavorite);
+    saveFavoriteStorage(newFavorite);
+    setDailyFavorite(newFavorite.id);
   }
 
   function deleteFavorite(id: string) {
@@ -61,16 +67,24 @@ export function FavoriteProvider(props: PropsWithChildren) {
     const updatedFavorites = favorites.filter((favorite) => favorite.id !== id);
 
     setFavorites(updatedFavorites);
-    deleteFavoriteFromAsyncStorage(id);
+    deleteFavoriteStorage(id);
   }
 
   useEffect(() => {
     getFavorites();
+    setIsFavorite(false);
   }, []);
 
   return (
     <FavoriteContext.Provider
-      value={{ createFavorite, deleteFavorite, favorites }}
+      value={{
+        createFavorite,
+        deleteFavorite,
+        favorites,
+        dailyFavorite,
+        isFavorite,
+        setIsFavorite,
+      }}
     >
       {props.children}
     </FavoriteContext.Provider>

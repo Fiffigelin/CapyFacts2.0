@@ -7,7 +7,7 @@ export default function useFavoriteData() {
     []
   );
 
-  const fetchFavorites = useCallback(async () => {
+  const fetchFavoritesStorage = useCallback(async () => {
     try {
       const cachedFavorites = await AsyncStorage.getItem("favorites");
       if (cachedFavorites) {
@@ -19,7 +19,7 @@ export default function useFavoriteData() {
     }
   }, []);
 
-  const saveFavorite = useCallback(
+  const saveFavoriteStorage = useCallback(
     async (favorite: Favorite) => {
       try {
         // Hämtar favoriter från AsyncStorage
@@ -45,7 +45,7 @@ export default function useFavoriteData() {
     [setFavoritesData]
   );
 
-  const deleteFavoriteFromAsyncStorage = useCallback(
+  const deleteFavoriteStorage = useCallback(
     async (id: string) => {
       try {
         const cachedFavorites = await AsyncStorage.getItem("favorites");
@@ -72,8 +72,8 @@ export default function useFavoriteData() {
 
   return {
     favoritesData,
-    fetchFavorites,
-    saveFavorite,
-    deleteFavoriteFromAsyncStorage,
+    fetchFavoritesStorage,
+    saveFavoriteStorage,
+    deleteFavoriteStorage,
   };
 }

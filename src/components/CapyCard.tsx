@@ -1,13 +1,8 @@
 import { Feather, MaterialIcons } from "@expo/vector-icons";
-import React, { useState } from "react";
-import {
-  Pressable,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View,
-} from "react-native";
+import React from "react";
+import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { Card } from "react-native-paper";
+import { useFavoriteContext } from "../context/FavoriteContext";
 
 type Props = {
   imageData: string | undefined;
@@ -15,10 +10,25 @@ type Props = {
 };
 
 export default function CapyCard({ imageData, factData }: Props) {
-  const [isFavorite, setIsFavorite] = useState(false);
+  const {
+    createFavorite,
+    deleteFavorite,
+    dailyFavorite,
+    isFavorite,
+    setIsFavorite,
+  } = useFavoriteContext();
 
   function favoritesOnPress() {
     setIsFavorite(isFavorite ? false : true);
+    console.log(isFavorite);
+
+    if (isFavorite === true) {
+      createFavorite();
+    } else {
+      if (dailyFavorite) {
+        deleteFavorite(dailyFavorite);
+      }
+    }
     console.log(isFavorite);
   }
   function sendSmsOnPress() {

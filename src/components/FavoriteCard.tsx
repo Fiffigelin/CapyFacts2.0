@@ -1,13 +1,13 @@
 import { Image } from "expo-image";
 import React from "react";
 import { StyleSheet, View } from "react-native";
-import { Capy } from "../../data";
+import { Favorite } from "../types/Types";
 
 interface Props {
-  selectedCard: Capy;
+  favorite: Favorite;
 }
 
-export default function FavoriteCard({ selectedCard }: Props) {
+export default function FavoriteCard({ favorite }: Props) {
   return (
     <View style={styles.cardContainer}>
       <Image
@@ -17,7 +17,7 @@ export default function FavoriteCard({ selectedCard }: Props) {
           objectFit: "contain",
           borderRadius: 8,
         }}
-        source={selectedCard.image}
+        source={favorite.image}
       />
     </View>
   );
