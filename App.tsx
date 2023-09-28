@@ -3,17 +3,17 @@ import { StatusBar } from "expo-status-bar";
 import React from "react";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import RootTabsNavigator from "./src/navigators/RootTabsNavigator";
-import { DataProvider } from "./src/context/DataContext";
+import { FavoriteProvider } from "./src/context/FavoriteContext";
 
 export default function App() {
   return (
     <SafeAreaProvider>
-      <DataProvider>
+      <FavoriteProvider>
         <NavigationContainer>
           <StatusBar style="auto" />
           <RootTabsNavigator />
         </NavigationContainer>
-      </DataProvider>
+      </FavoriteProvider>
     </SafeAreaProvider>
   );
 }
