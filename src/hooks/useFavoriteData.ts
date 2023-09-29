@@ -13,6 +13,7 @@ export default function useFavoriteData() {
       if (cachedFavorites) {
         const parsedFavorites: Favorite[] = JSON.parse(cachedFavorites);
         setFavoritesData(parsedFavorites);
+        return parsedFavorites;
       }
     } catch (error) {
       console.error("Error fetching favorites: ", error);
@@ -35,6 +36,7 @@ export default function useFavoriteData() {
           "favorites",
           JSON.stringify(parsedFavorites)
         );
+        console.log({ parsedFavorites });
 
         // Uppdatera state med de nya favoriterna
         setFavoritesData(parsedFavorites);
@@ -70,10 +72,26 @@ export default function useFavoriteData() {
     [setFavoritesData]
   );
 
+  //felhantering
+  async function logCachedFavorites() {
+    try {
+      const cachedFavorites = await AsyncStorage.getItem("favorites");
+      if (cachedFavorites) {
+        const parsedFavorites: Favorite[] = JSON.parse(cachedFavorites);
+        console.log("Cached favorites from AsyncStorage:", parsedFavorites);
+      } else {
+        console.log("No cached favorites found in AsyncStorage.");
+      }
+    } catch (error) {
+      console.error("Error fetching cached favorites: ", error);
+    }
+  }
+
   return {
     favoritesData,
     fetchFavoritesStorage,
     saveFavoriteStorage,
     deleteFavoriteStorage,
+    logCachedFavorites,
   };
 }

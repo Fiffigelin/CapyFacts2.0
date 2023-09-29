@@ -24,12 +24,13 @@ export default function CapyCard({ imageData, factData }: Props) {
 
     if (isFavorite === true) {
       createFavorite();
+      console.log("created");
     } else {
       if (dailyFavorite) {
+        console.log("deleted");
         deleteFavorite(dailyFavorite);
       }
     }
-    console.log(isFavorite);
   }
   function sendSmsOnPress() {
     console.log("Ett sms");

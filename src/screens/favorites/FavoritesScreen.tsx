@@ -19,8 +19,8 @@ function arrayChunk<T>(array: T[], chunkSize: number): T[][] {
 
 export default function FavoritesScreen({ navigation }: FavoritesScreenProps) {
   const { data } = useMockedData(); // hämtar datan via min hook
-  // const { favorites } = useFavoriteContext();
-  const chunkedCards = arrayChunk(data, 3);
+  const { favorites } = useFavoriteContext();
+  const chunkedCards = arrayChunk(favorites, 3);
 
   return (
     <View style={styles.container}>

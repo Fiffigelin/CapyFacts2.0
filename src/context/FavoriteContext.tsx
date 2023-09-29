@@ -37,14 +37,19 @@ export function FavoriteProvider(props: PropsWithChildren) {
     fetchFavoritesStorage,
     saveFavoriteStorage,
     deleteFavoriteStorage,
+    logCachedFavorites,
   } = useFavoriteData();
 
   async function getFavorites() {
     // hämta all cachad data från asyncStorage
-    await fetchFavoritesStorage();
+    const fetchedFavorites = await fetchFavoritesStorage();
 
-    if (favoritesData) {
-      setFavorites(favoritesData);
+    if (fetchedFavorites) {
+      console.log(fetchedFavorites);
+      setFavorites(fetchedFavorites);
+      logCachedFavorites();
+    } else {
+      console.log("No chached favorites available");
     }
   }
 
@@ -68,6 +73,7 @@ export function FavoriteProvider(props: PropsWithChildren) {
 
     setFavorites(updatedFavorites);
     deleteFavoriteStorage(id);
+    console.log(id);
   }
 
   useEffect(() => {
