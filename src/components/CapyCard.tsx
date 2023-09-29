@@ -1,7 +1,7 @@
 import { Feather, MaterialIcons } from "@expo/vector-icons";
-import React, { useEffect, useState } from "react";
-import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
-import { Card } from "react-native-paper";
+import React, { useState } from "react";
+import { Modal, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { Card, PaperProvider, Portal } from "react-native-paper";
 import { useFavoriteContext } from "../context/FavoriteContext";
 
 type Props = {
@@ -11,6 +11,8 @@ type Props = {
 
 export default function CapyCard({ imageData, factData }: Props) {
   const [isFavorite, setIsFavorite] = useState(false);
+  const [showSmsModal, setShowSmsModal] = useState(false);
+  const [openModal, setOpenModal] = useState(false);
   const { createFavorite, deleteFavorite, dailyFavorite, favorites } =
     useFavoriteContext();
 
@@ -27,8 +29,41 @@ export default function CapyCard({ imageData, factData }: Props) {
       }
     }
   }
-  function sendSmsOnPress() {
-    console.log("Ett sms");
+
+  function renderModal() {
+    return (
+      <Modal visible={openModal} animationType="slide" transparent={true}>
+        <View
+          style={{
+            flex: 1,
+            justifyContent: "center",
+            alignItems: "center",
+            backgroundColor: "rgba(0, 0, 0, 0.2)",
+          }}
+        >
+          <View
+            style={{
+              backgroundColor: "white",
+              padding: 15,
+              width: "90%",
+              height: "60%",
+              borderRadius: 10,
+            }}
+          >
+            <View
+              style={{
+                alignItems: "flex-end",
+              }}
+            >
+              <TouchableOpacity onPress={() => setOpenModal(false)}>
+                <MaterialIcons name="close" size={40} color="black" />
+              </TouchableOpacity>
+            </View>
+            <Text>En modal!</Text>
+          </View>
+        </View>
+      </Modal>
+    );
   }
 
   return (
@@ -55,10 +90,11 @@ export default function CapyCard({ imageData, factData }: Props) {
             <MaterialIcons name="favorite" size={30} color="red" />
           )}
         </TouchableOpacity>
-        <TouchableOpacity onPress={sendSmsOnPress}>
+        <TouchableOpacity onPress={() => setOpenModal(true)}>
           <Feather name="send" size={30} color="black" />
         </TouchableOpacity>
       </View>
+      {renderModal()}
     </View>
   );
 }
