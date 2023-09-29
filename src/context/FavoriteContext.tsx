@@ -16,8 +16,6 @@ type FavoriteContextType = {
   deleteFavorite: (id: string) => void;
   favorites: Favorite[];
   dailyFavorite: string | undefined;
-  isFavorite: boolean;
-  setIsFavorite: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
 const FavoriteContext = createContext({} as FavoriteContextType);
@@ -29,7 +27,6 @@ export function useFavoriteContext() {
 export function FavoriteProvider(props: PropsWithChildren) {
   const [favorites, setFavorites] = useState<Favorite[]>([]);
   const [dailyFavorite, setDailyFavorite] = useState<string>();
-  const [isFavorite, setIsFavorite] = useState(false);
   const { imageData, refetchImage } = useImageData();
   const { factData, refetchFact } = useFactData();
   const {
@@ -45,7 +42,7 @@ export function FavoriteProvider(props: PropsWithChildren) {
     const fetchedFavorites = await fetchFavoritesStorage();
 
     if (fetchedFavorites) {
-      console.log(fetchedFavorites);
+      // console.log(fetchedFavorites);
       setFavorites(fetchedFavorites);
       logCachedFavorites();
     } else {
@@ -53,9 +50,7 @@ export function FavoriteProvider(props: PropsWithChildren) {
     }
   }
 
-  function createFavorite() {
-    // ordna så datan cachas och skickas till asyncStorage och läggs in i statet
-
+  async function createFavorite() {
     const newFavorite: Favorite = {
       id: randomId(),
       image: imageData,
@@ -63,8 +58,9 @@ export function FavoriteProvider(props: PropsWithChildren) {
     };
 
     setFavorites([...favorites, newFavorite]);
-    saveFavoriteStorage(newFavorite);
+    await saveFavoriteStorage(newFavorite);
     setDailyFavorite(newFavorite.id);
+    console.log(`created ${dailyFavorite} + ${newFavorite.id}`);
   }
 
   function deleteFavorite(id: string) {
@@ -73,12 +69,14 @@ export function FavoriteProvider(props: PropsWithChildren) {
 
     setFavorites(updatedFavorites);
     deleteFavoriteStorage(id);
+    if (id === dailyFavorite) {
+      setDailyFavorite("");
+    }
     console.log(id);
   }
 
   useEffect(() => {
     getFavorites();
-    setIsFavorite(false);
   }, []);
 
   return (
@@ -88,8 +86,6 @@ export function FavoriteProvider(props: PropsWithChildren) {
         deleteFavorite,
         favorites,
         dailyFavorite,
-        isFavorite,
-        setIsFavorite,
       }}
     >
       {props.children}

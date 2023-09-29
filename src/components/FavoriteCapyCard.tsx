@@ -1,36 +1,30 @@
 import { Feather, MaterialIcons } from "@expo/vector-icons";
-import React, { useEffect, useState } from "react";
+import { NativeStackNavigationProp } from "@react-navigation/native-stack";
+import React from "react";
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { Card } from "react-native-paper";
 import { useFavoriteContext } from "../context/FavoriteContext";
+import { FavoriteStackScreens } from "../navigators/FavoritesStackNavigator";
 
 type Props = {
+  id: string;
   imageData: string | undefined;
   factData: string | undefined;
 };
 
-export default function CapyCard({ imageData, factData }: Props) {
-  const [isFavorite, setIsFavorite] = useState(false);
-  const { createFavorite, deleteFavorite, dailyFavorite, favorites } =
-    useFavoriteContext();
+export default function CapyCard({ id, imageData, factData }: Props) {
+  const { deleteFavorite } = useFavoriteContext();
 
   function favoritesOnPress() {
-    setIsFavorite(isFavorite ? false : true);
-    console.log(isFavorite);
-
-    if (isFavorite === true) {
-      createFavorite();
-    } else {
-      if (dailyFavorite) {
-        console.log("deleted");
-        deleteFavorite(dailyFavorite);
-      }
+    console.log("deleted");
+    if (id) {
+      deleteFavorite(id);
     }
   }
+
   function sendSmsOnPress() {
     console.log("Ett sms");
   }
-
   return (
     <View style={styles.container}>
       <Card style={styles.cardContainer}>
@@ -44,16 +38,7 @@ export default function CapyCard({ imageData, factData }: Props) {
       </Card>
       <View style={styles.buttonContainer}>
         <TouchableOpacity onPress={favoritesOnPress}>
-          {isFavorite ? (
-            <MaterialIcons
-              style={{ justifyContent: "flex-start" }}
-              name="favorite-outline"
-              color="black"
-              size={30}
-            />
-          ) : (
-            <MaterialIcons name="favorite" size={30} color="red" />
-          )}
+          <MaterialIcons name="favorite" size={30} color="red" />
         </TouchableOpacity>
         <TouchableOpacity onPress={sendSmsOnPress}>
           <Feather name="send" size={30} color="black" />

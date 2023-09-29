@@ -36,7 +36,7 @@ export default function useFavoriteData() {
           "favorites",
           JSON.stringify(parsedFavorites)
         );
-        console.log({ parsedFavorites });
+        // console.log({ parsedFavorites });
 
         // Uppdatera state med de nya favoriterna
         setFavoritesData(parsedFavorites);
