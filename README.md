@@ -2,15 +2,15 @@
 
 The first assignment in the course 'App Development' with David Jensen as part of the System Developer.NET program at Yrkeshögskolan i Borås, SUVNET22
 
-## Idioti på elitnivå
+## Idiocy at an elite level
 
-Jag klantade mig på elitnivå. Så jag fick starta upp ett nytt repo.
-Här är den tidigare git-commitsen. Jag har kopierat flödet till detta repo men ja...., här är en fin bild på det:
+I messed up big time, so I had to start a new repo. Here are the previous git commits. I copied the workflow to this repo, but, well... here's a nice picture of it:
+
 ![First_repo_commits](image.png)
 
 ## arrayChunk
 
-När man är en google-pro.
+Heres a mix-match for making the arrayChunk in FavoritesScreen.tsx
 
 - https://medium.com/@matt.readout/chunking-an-array-in-javascript-831150bb6c7
 - https://developermemos.com/posts/chunking-array-typescript
@@ -21,13 +21,21 @@ När man är en google-pro.
 2. `<Text>`
 3. `<FlatList>`
 4. `<TouchableOpacity>`
+5. `<StyleSheet>`
+6. `<SafeAreaProvider>`
 
 ## Expo SDK used in this app:
 
 1. `<Image>`
 2. `<Statusbar>`
-3. `<SafeAreaProvider>` = osäker på denna. Finns med bland Expos SDK på docs men den hanteras av ett react-native-paket
+3. `<>`
 4. `<>`
+
+## Third module used in this app:
+
+1. `AsyncStorage`from "@react-native-async-storage/async-storage";
+2. `Card`from @react-native-paper;
+3. `Modal`from @react-native-paper;
 
 ## Krav för godkänt:
 
