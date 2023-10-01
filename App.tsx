@@ -5,6 +5,7 @@ import { SafeAreaProvider } from "react-native-safe-area-context";
 import { FavoriteProvider } from "./src/context/FavoriteContext";
 import { NewDataProvider } from "./src/context/NewDataContext";
 import RootTabsNavigator from "./src/navigators/RootTabsNavigator";
+import { LinearGradient } from "expo-linear-gradient";
 
 export default function App() {
   return (

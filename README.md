@@ -19,18 +19,16 @@ Heres a mix-match for making the arrayChunk in FavoritesScreen.tsx
 
 1. `<View>`
 2. `<Text>`
-3. `<FlatList>`
-4. `<TouchableOpacity>`
-5. `<StyleSheet>`
-6. `<SafeAreaProvider>`
+3. `<TouchableOpacity>`
+4. `<StyleSheet>`
+5. `<SafeAreaProvider>`
 
 ## Expo SDK used in this app:
 
 1. `<Image>`
 2. `<Statusbar>`
-3. `<Notification>`
-4. `<Splashscreen>`
-5. `<LinearGradient>`
+3. `<AsyncStorage>`
+4. `<FlashList>`
 
 ## Third module used in this app:
 

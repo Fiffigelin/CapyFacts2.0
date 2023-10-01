@@ -1,8 +1,10 @@
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
+import React from "react";
 import { FlatList, StyleSheet, TouchableOpacity, View } from "react-native";
 import FavoriteImage from "../../components/FavoriteImage";
 import { useFavoriteContext } from "../../context/FavoriteContext";
 import { FavoriteStackScreens } from "../../navigators/FavoritesStackNavigator";
+import { FlashList } from "@shopify/flash-list";
 
 type FavoritesScreenProps = {
   navigation: NativeStackNavigationProp<FavoriteStackScreens, "Favorites">;
@@ -22,7 +24,7 @@ export default function FavoritesScreen({ navigation }: FavoritesScreenProps) {
 
   return (
     <View style={styles.container}>
-      <FlatList
+      <FlashList
         alwaysBounceVertical={false}
         data={chunkedCards}
         renderItem={({ item }) => (
@@ -41,7 +43,29 @@ export default function FavoritesScreen({ navigation }: FavoritesScreenProps) {
             ))}
           </View>
         )}
-      ></FlatList>
+        estimatedItemSize={200}
+      >
+        {/* <FlatList
+          alwaysBounceVertical={false}
+          data={chunkedCards}
+          renderItem={({ item }) => (
+            <View style={styles.row}>
+              {item.map((favorite) => (
+                <TouchableOpacity
+                  key={favorite.id}
+                  onPress={() =>
+                    navigation.navigate("Detail", {
+                      selectedCard: favorite,
+                    })
+                  }
+                >
+                  <FavoriteImage favorite={favorite} />
+                </TouchableOpacity>
+              ))}
+            </View>
+          )}
+        ></FlatList> */}
+      </FlashList>
     </View>
   );
 }

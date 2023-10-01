@@ -1,3 +1,4 @@
+import { LinearGradient } from "expo-linear-gradient";
 import { StyleSheet, View } from "react-native";
 import { Button } from "react-native-paper";
 import CapyCard from "../components/CapyCard";

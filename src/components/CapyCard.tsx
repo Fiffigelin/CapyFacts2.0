@@ -32,7 +32,7 @@ export default function CapyCard({ id, image, fact }: Props) {
 
   useEffect(() => {
     const capy = favorites.find((favorite) => favorite.id === id);
-    console.log(id);
+    console.log(`capy: ${capy?.id}`);
     setIsFavorite(!!capy);
   }, [id, favorites]);
 
