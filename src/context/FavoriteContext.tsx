@@ -12,7 +12,7 @@ import { Favorite } from "../types/Types";
 import { randomId } from "../utilities/RandomIdGenerator";
 
 type FavoriteContextType = {
-  createFavorite: () => void;
+  createFavorite: (id: string, image:string, fact:string) => void;
   deleteFavorite: (id: string) => void;
   favorites: Favorite[];
   dailyFavorite: string | undefined;
@@ -50,11 +50,11 @@ export function FavoriteProvider(props: PropsWithChildren) {
     }
   }
 
-  async function createFavorite() {
+  async function createFavorite(id: string, image: string, fact: string) {
     const newFavorite: Favorite = {
-      id: randomId(),
-      image: imageData as string,
-      fact: factData as string,
+      id: id,
+      image: image,
+      fact: fact,
     };
 
     setFavorites([...favorites, newFavorite]);

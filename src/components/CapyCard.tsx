@@ -6,9 +6,9 @@ import { useFavoriteContext } from "../context/FavoriteContext";
 import useImageData from "../hooks/useImageData";
 
 type Props = {
-  id: string | undefined;
-  image: string | undefined;
-  fact: string | undefined;
+  id: string;
+  image: string;
+  fact: string;
 };
 
 export default function CapyCard({ id, image, fact }: Props) {
@@ -16,20 +16,19 @@ export default function CapyCard({ id, image, fact }: Props) {
   const [isFavorite, setIsFavorite] = useState(false);
   const [showSmsModal, setShowSmsModal] = useState(false);
   const [openModal, setOpenModal] = useState(false);
-  const { createFavorite, deleteFavorite, dailyFavorite, favorites } =
-    useFavoriteContext();
+  const { createFavorite, deleteFavorite, favorites } = useFavoriteContext();
 
   function favoritesOnPress() {
-    setIsFavorite(isFavorite ? false : true);
-    console.log(isFavorite);
+    const newIsFavorite = !isFavorite;
+    setIsFavorite(newIsFavorite);
+    console.log(newIsFavorite);
 
-    if (isFavorite === true) {
-      createFavorite();
-    } else {
-      if (dailyFavorite) {
-        console.log("deleted");
-        deleteFavorite(dailyFavorite);
-      }
+    if (newIsFavorite === true) {
+      createFavorite(id, image, fact);
+    }
+    if (newIsFavorite === false) {
+      console.log("deleted");
+      deleteFavorite(id);
     }
   }
 
@@ -37,12 +36,8 @@ export default function CapyCard({ id, image, fact }: Props) {
     const capy = favorites.find((favorite) => favorite.id === id);
     console.log(`capy: ${capy?.id}`);
     console.log(`capy storage: ${imageData}`);
-    if (capy) {
-      setIsFavorite(true);
-    } else {
-      setIsFavorite(false);
-    }
-  }, [isFavorite]);
+    setIsFavorite(!!capy); // Uppdatera isFavorite direkt baserat på om favoriten finns i listan
+  }, [id, favorites, imageData]);
 
   function renderModal() {
     return (
