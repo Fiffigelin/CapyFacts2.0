@@ -28,14 +28,14 @@ Heres a mix-match for making the arrayChunk in FavoritesScreen.tsx
 
 1. `<Image>`
 2. `<Statusbar>`
-3. `<>`
-4. `<>`
+3. `<Notification>`
+4. `<Splashscreen>`
+5. `<LinearGradient>`
 
 ## Third module used in this app:
 
 1. `AsyncStorage`from "@react-native-async-storage/async-storage";
 2. `Card`from @react-native-paper;
-3. `Modal`from @react-native-paper;
 
 ## Krav för godkänt:
 

@@ -19,13 +19,17 @@ export default function FavoriteDetailScreen({ route }: DetailScreenProps) {
   return (
     <View style={styles.container}>
       {selectedCard ? (
-        // <CapyCard imageData={selectedCard.image} factData={selectedCard.fact} />
-        <FavoriteCapyCard
+        <CapyCard
           id={selectedCard.id}
-          imageData={selectedCard.image}
-          factData={selectedCard.fact}
+          image={selectedCard.image}
+          fact={selectedCard.fact}
         />
       ) : (
+        // <FavoriteCapyCard
+        //   id={selectedCard.id}
+        //   imageData={selectedCard.image}
+        //   factData={selectedCard.fact}
+        // />
         <Text>No selected card</Text>
       )}
     </View>

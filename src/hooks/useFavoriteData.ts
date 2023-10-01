@@ -12,7 +12,7 @@ export default function useFavoriteData() {
       const cachedFavorites = await AsyncStorage.getItem("favorites");
       if (cachedFavorites) {
         const parsedFavorites: Favorite[] = JSON.parse(cachedFavorites);
-        setFavoritesData(parsedFavorites);
+        // setFavoritesData(parsedFavorites);
         return parsedFavorites;
       }
     } catch (error) {

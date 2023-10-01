@@ -53,8 +53,8 @@ export function FavoriteProvider(props: PropsWithChildren) {
   async function createFavorite() {
     const newFavorite: Favorite = {
       id: randomId(),
-      image: imageData,
-      fact: factData,
+      image: imageData as string,
+      fact: factData as string,
     };
 
     setFavorites([...favorites, newFavorite]);

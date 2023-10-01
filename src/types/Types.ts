@@ -1,5 +1,7 @@
 export type Favorite = {
   id: string;
-  image: string | undefined;
-  fact: string | undefined;
+  // image: string | undefined;
+  image: string;
+  // fact: string | undefined;
+  fact: string;
 };
