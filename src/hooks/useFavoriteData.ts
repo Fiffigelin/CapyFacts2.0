@@ -12,7 +12,6 @@ export default function useFavoriteData() {
       const cachedFavorites = await AsyncStorage.getItem("favorites");
       if (cachedFavorites) {
         const parsedFavorites: Favorite[] = JSON.parse(cachedFavorites);
-        // setFavoritesData(parsedFavorites);
         return parsedFavorites;
       }
     } catch (error) {
@@ -31,14 +30,11 @@ export default function useFavoriteData() {
 
         parsedFavorites.push(favorite);
 
-        // Spara de uppdaterade favoriterna till AsyncStorage
         await AsyncStorage.setItem(
           "favorites",
           JSON.stringify(parsedFavorites)
         );
-        // console.log({ parsedFavorites });
 
-        // Uppdatera state med de nya favoriterna
         setFavoritesData(parsedFavorites);
       } catch (error) {
         console.error("Error saving favorite: ", error);

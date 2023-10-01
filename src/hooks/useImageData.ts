@@ -1,16 +1,6 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useCallback, useEffect, useState } from "react";
-
-type ImageResponse = {
-  data: {
-    alt: string;
-    height: number;
-    index: number;
-    url: string;
-    width: number;
-  };
-  success: boolean;
-};
+import { ImageResponse } from "../types/Types";
 
 export default function useImageData() {
   const [imageData, setImageData] = useState<string | undefined>(undefined);
@@ -29,6 +19,7 @@ export default function useImageData() {
         await AsyncStorage.setItem("dailyImageDate", new Date().toISOString());
         console.log(imageUrl);
         setImageData(imageUrl);
+        return imageUrl;
       } else {
         console.error("Api request failed");
       }

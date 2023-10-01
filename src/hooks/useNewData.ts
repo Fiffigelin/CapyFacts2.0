@@ -11,8 +11,8 @@ export default function useDataStorage() {
       if (cachedData) {
         const parsedData: Favorite = JSON.parse(cachedData);
         setNewData(parsedData);
-        return parsedData;
         logCachedData();
+        return parsedData;
       }
     } catch (error) {
       console.error("Error fetching new data: ", error);
@@ -50,10 +50,22 @@ export default function useDataStorage() {
     }
   }
 
+  const deleteDataStorage = useCallback(
+    async (id: string) => {
+      try {
+        await AsyncStorage.removeItem("newData");
+      } catch (error) {
+        console.error("Error deleting favorite from AsyncStorage: ", error);
+      }
+    },
+    [newData]
+  );
+
   return {
     newData,
     fetchDataStorage,
     saveDataStorage,
     logCachedData,
+    deleteDataStorage,
   };
 }

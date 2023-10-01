@@ -5,14 +5,11 @@ import {
   useEffect,
   useState,
 } from "react";
-import useFactData from "../hooks/useFactData";
 import useFavoriteData from "../hooks/useFavoriteData";
-import useImageData from "../hooks/useImageData";
 import { Favorite } from "../types/Types";
-import { randomId } from "../utilities/RandomIdGenerator";
 
 type FavoriteContextType = {
-  createFavorite: (id: string, image:string, fact:string) => void;
+  createFavorite: (id: string, image: string, fact: string) => void;
   deleteFavorite: (id: string) => void;
   favorites: Favorite[];
   dailyFavorite: string | undefined;
@@ -27,10 +24,7 @@ export function useFavoriteContext() {
 export function FavoriteProvider(props: PropsWithChildren) {
   const [favorites, setFavorites] = useState<Favorite[]>([]);
   const [dailyFavorite, setDailyFavorite] = useState<string>();
-  const { imageData, refetchImage } = useImageData();
-  const { factData, refetchFact } = useFactData();
   const {
-    favoritesData,
     fetchFavoritesStorage,
     saveFavoriteStorage,
     deleteFavoriteStorage,
@@ -38,11 +32,9 @@ export function FavoriteProvider(props: PropsWithChildren) {
   } = useFavoriteData();
 
   async function getFavorites() {
-    // hämta all cachad data från asyncStorage
     const fetchedFavorites = await fetchFavoritesStorage();
 
     if (fetchedFavorites) {
-      // console.log(fetchedFavorites);
       setFavorites(fetchedFavorites);
       logCachedFavorites();
     } else {
@@ -60,11 +52,9 @@ export function FavoriteProvider(props: PropsWithChildren) {
     setFavorites([...favorites, newFavorite]);
     await saveFavoriteStorage(newFavorite);
     setDailyFavorite(newFavorite.id);
-    console.log(`created ${dailyFavorite} + ${newFavorite.id}`);
   }
 
   function deleteFavorite(id: string) {
-    // ta bort favoriten både i staten OCH i asyncStorage
     const updatedFavorites = favorites.filter((favorite) => favorite.id !== id);
 
     setFavorites(updatedFavorites);

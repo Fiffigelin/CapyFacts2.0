@@ -4,7 +4,6 @@ import React from "react";
 import { StyleSheet, Text, View } from "react-native";
 import { FavoriteStackScreens } from "../../navigators/FavoritesStackNavigator";
 import CapyCard from "../../components/CapyCard";
-import FavoriteCapyCard from "../../components/FavoriteCapyCard";
 
 type DetailScreenRouteProp = RouteProp<FavoriteStackScreens, "Detail">;
 
@@ -25,11 +24,6 @@ export default function FavoriteDetailScreen({ route }: DetailScreenProps) {
           fact={selectedCard.fact}
         />
       ) : (
-        // <FavoriteCapyCard
-        //   id={selectedCard.id}
-        //   imageData={selectedCard.image}
-        //   factData={selectedCard.fact}
-        // />
         <Text>No selected card</Text>
       )}
     </View>

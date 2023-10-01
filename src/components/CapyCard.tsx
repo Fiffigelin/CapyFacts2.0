@@ -3,7 +3,6 @@ import React, { useEffect, useState } from "react";
 import { Modal, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { Card } from "react-native-paper";
 import { useFavoriteContext } from "../context/FavoriteContext";
-import useImageData from "../hooks/useImageData";
 
 type Props = {
   id: string;
@@ -12,7 +11,6 @@ type Props = {
 };
 
 export default function CapyCard({ id, image, fact }: Props) {
-  const { imageData } = useImageData();
   const [isFavorite, setIsFavorite] = useState(false);
   const [showSmsModal, setShowSmsModal] = useState(false);
   const [openModal, setOpenModal] = useState(false);
@@ -34,10 +32,9 @@ export default function CapyCard({ id, image, fact }: Props) {
 
   useEffect(() => {
     const capy = favorites.find((favorite) => favorite.id === id);
-    console.log(`capy: ${capy?.id}`);
-    console.log(`capy storage: ${imageData}`);
-    setIsFavorite(!!capy); // Uppdatera isFavorite direkt baserat på om favoriten finns i listan
-  }, [id, favorites, imageData]);
+    console.log(id);
+    setIsFavorite(!!capy);
+  }, [id, favorites]);
 
   function renderModal() {
     return (

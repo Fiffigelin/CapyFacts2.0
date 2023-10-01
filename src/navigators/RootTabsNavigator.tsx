@@ -4,24 +4,22 @@ import React from "react";
 import HomeScreen from "../screens/HomeScreen";
 import FavoritesStackNavigator from "./FavoritesStackNavigator";
 
-// type RootTabScreens = {
-//   HomeTab: undefined;
-//   FavoritesTab: undefined;
-// };
-
-// const Tabs = createBottomTabNavigator<RootTabScreens>();
 const Tabs = createBottomTabNavigator();
 
 export default function RootTabsNavigator() {
   return (
-    <Tabs.Navigator>
+    <Tabs.Navigator
+      screenOptions={{
+        tabBarShowLabel: false,
+      }}
+    >
       <Tabs.Screen
-        name="HomeTab"
+        name="Home"
         component={HomeScreen}
         options={{
           headerShown: false,
           tabBarIcon: (props) => (
-            <MaterialIcons name="home" size={props.size} color={props.color} />
+            <MaterialIcons name="home" size={30} color={props.color} />
           ),
         }}
       />
@@ -34,7 +32,7 @@ export default function RootTabsNavigator() {
           tabBarIcon: (props) => (
             <MaterialIcons
               name="favorite-outline"
-              size={props.size}
+              size={30}
               color={props.color}
             />
           ),

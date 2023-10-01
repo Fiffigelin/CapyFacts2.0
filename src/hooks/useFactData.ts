@@ -1,12 +1,6 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useEffect, useState } from "react";
-
-type FactResponse = {
-  data: {
-    fact: string;
-  };
-  success: boolean;
-};
+import { FactResponse } from "../types/Types";
 
 export default function useFactData() {
   const [factData, setFactData] = useState<string | undefined>(undefined);
@@ -21,6 +15,7 @@ export default function useFactData() {
         await AsyncStorage.setItem("dailyFact", factString);
         console.log(factString);
         setFactData(factString);
+        return factString;
       } else {
         console.error("Api request failed");
       }

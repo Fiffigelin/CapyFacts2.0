@@ -7,7 +7,7 @@ interface Props {
   favorite: Favorite;
 }
 
-export default function FavoriteCard({ favorite }: Props) {
+export default function FavoriteImage({ favorite }: Props) {
   return (
     <View style={styles.cardContainer}>
       <Image
