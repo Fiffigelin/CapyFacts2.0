@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { Modal, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { Card } from "react-native-paper";
 import { useFavoriteContext } from "../context/FavoriteContext";
+import SMS from "./SMS";
 // import SmsModal from "./SmsModal";
 
 type Props = {
@@ -44,15 +45,15 @@ export default function CapyCard({ id, image, fact }: Props) {
             flex: 1,
             justifyContent: "center",
             alignItems: "center",
-            backgroundColor: "rgba(0, 0, 0, 0.2)",
+            backgroundColor: "rgba(0, 0, 0, 0.5)",
           }}
         >
           <View
             style={{
-              backgroundColor: "white",
+              backgroundColor: "#e2d1ce",
               padding: 15,
               width: "90%",
-              height: "60%",
+              height: "auto",
               borderRadius: 10,
             }}
           >
@@ -65,7 +66,7 @@ export default function CapyCard({ id, image, fact }: Props) {
                 <MaterialIcons name="close" size={40} color="black" />
               </TouchableOpacity>
             </View>
-            <Text>En modal!</Text>
+            <SMS props={fact} />
           </View>
         </View>
       </Modal>
