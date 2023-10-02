@@ -11,6 +11,9 @@ export default function RootTabsNavigator() {
     <Tabs.Navigator
       screenOptions={{
         tabBarShowLabel: false,
+        tabBarActiveTintColor: "#fbf8f8", // Färgen när skärmen är aktiv
+        tabBarInactiveTintColor: "#ccb0ab",
+        tabBarStyle: { backgroundColor: "#9f6a60", borderColor: "none" },
       }}
     >
       <Tabs.Screen

@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { Modal, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { Card } from "react-native-paper";
 import { useFavoriteContext } from "../context/FavoriteContext";
+// import SmsModal from "./SmsModal";
 
 type Props = {
   id: string;
@@ -12,7 +13,6 @@ type Props = {
 
 export default function CapyCard({ id, image, fact }: Props) {
   const [isFavorite, setIsFavorite] = useState(false);
-  const [showSmsModal, setShowSmsModal] = useState(false);
   const [openModal, setOpenModal] = useState(false);
   const { createFavorite, deleteFavorite, favorites } = useFavoriteContext();
 
@@ -86,18 +86,18 @@ export default function CapyCard({ id, image, fact }: Props) {
       <View style={styles.buttonContainer}>
         <TouchableOpacity onPress={favoritesOnPress}>
           {isFavorite ? (
-            <MaterialIcons name="favorite" size={30} color="red" />
+            <MaterialIcons name="favorite" size={30} color="#dd223a" />
           ) : (
             <MaterialIcons
               style={{ justifyContent: "flex-start" }}
               name="favorite-outline"
-              color="black"
+              color="#fbf8f8"
               size={30}
             />
           )}
         </TouchableOpacity>
         <TouchableOpacity onPress={() => setOpenModal(true)}>
-          <Feather name="send" size={30} color="black" />
+          <Feather name="send" size={30} color="#fbf8f8" />
         </TouchableOpacity>
       </View>
       {renderModal()}
@@ -108,13 +108,12 @@ export default function CapyCard({ id, image, fact }: Props) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
     alignItems: "flex-end",
     justifyContent: "center",
     padding: 20,
   },
   cardContainer: {
-    backgroundColor: "#fff",
+    backgroundColor: "#e7dad7",
     alignItems: "center",
     justifyContent: "center",
     width: 350,

@@ -26,11 +26,11 @@ export default function FavoriteImage({ favorite }: Props) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
+    // backgroundColor: "#fff",
     padding: 50,
   },
   cardContainer: {
-    backgroundColor: "#fff",
+    // backgroundColor: "#fff",
     padding: 2,
     marginTop: 2,
   },

@@ -13,7 +13,12 @@ const Stack = createNativeStackNavigator<FavoriteStackScreens>();
 
 export default function FavoritesStackNavigator() {
   return (
-    <Stack.Navigator>
+    <Stack.Navigator
+      screenOptions={{
+        headerStyle: { backgroundColor: "#d1b7b2" },
+        headerShadowVisible: false,
+      }}
+    >
       <Stack.Screen name="Favorites" component={FavoritesScreen} />
       <Stack.Screen name="Detail" component={FavoriteDetailScreen} />
     </Stack.Navigator>

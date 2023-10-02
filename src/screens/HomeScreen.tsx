@@ -8,21 +8,30 @@ export default function HomeScreen() {
   const { newCapy, createNewCapy } = useNewDataContext();
 
   return (
-    <View style={styles.container}>
-      <CapyCard
-        id={newCapy?.id as string}
-        image={newCapy?.image as string}
-        fact={newCapy?.fact as string}
-      />
-      <Button onPress={createNewCapy}>New Capy</Button>
-    </View>
+    <LinearGradient
+      // colors={["#4c669f", "#3b5998", "#192f6a"]} //blå
+      // colors={["#e2d2c3", "#b0855c"]} //roseguld
+      colors={["#d1b7b2", "#9f6a60"]} //rose
+      // colors={["#dfe0e0", "#8c8e8c"]} //silver
+      // colors={["#efc275", "#E9AE49", "#DB941A"]} //gul
+      locations={[0.5, 1]}
+      style={styles.background}
+    >
+      <View>
+        <CapyCard
+          id={newCapy?.id as string}
+          image={newCapy?.image as string}
+          fact={newCapy?.fact as string}
+        />
+        <Button onPress={createNewCapy}>New Capy</Button>
+      </View>
+    </LinearGradient>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
+  background: {
     flex: 1,
-    backgroundColor: "#fff",
     alignItems: "center",
     justifyContent: "center",
   },
