@@ -23,7 +23,11 @@ export default function HomeScreen() {
           image={newCapy?.image as string}
           fact={newCapy?.fact as string}
         />
-        <Button onPress={createNewCapy}>New Capy</Button>
+      </View>
+      <View style={styles.buttonContainer}>
+        <Button textColor="#66443e" mode="elevated" onPress={createNewCapy}>
+          New CapyFact
+        </Button>
       </View>
     </LinearGradient>
   );
@@ -33,6 +37,9 @@ const styles = StyleSheet.create({
   background: {
     flex: 1,
     alignItems: "center",
+    justifyContent: "center",
+  },
+  buttonContainer: {
     justifyContent: "center",
   },
 });

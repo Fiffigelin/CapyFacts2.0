@@ -1,15 +1,14 @@
 import * as SMS from "expo-sms";
 import { StatusBar } from "expo-status-bar";
 import { useEffect, useState } from "react";
-import { Button, StyleSheet, View, Text, TextInput } from "react-native";
+import { StyleSheet, View, Text, TextInput } from "react-native";
+import { Button } from "react-native-paper";
 
 type SMSProps = {
   props: string;
 };
 
 export default function App({ props }: SMSProps) {
-  const sms = "Heres a fascinating fact about capybaras: " + props;
-
   const [isAvailable, setIsAvailable] = useState(false);
   const [phoneNumber, setPhoneNumber] = useState<string>();
   const [message, setMessage] = useState<string>();
@@ -20,7 +19,7 @@ export default function App({ props }: SMSProps) {
       setIsAvailable(isSmsAvailable);
     };
 
-    setMessage(sms);
+    setMessage("Heres a fascinating fact about capybaras: " + props);
     checkSmsAvailability();
   }, [setIsAvailable]);
 
@@ -36,7 +35,7 @@ export default function App({ props }: SMSProps) {
   return (
     <>
       <View>
-        <Text style={{ fontSize: 18 }}>{sms}</Text>
+        <Text style={{ fontSize: 18 }}>{message}</Text>
       </View>
       <View style={styles.container}>
         <TextInput
@@ -46,9 +45,18 @@ export default function App({ props }: SMSProps) {
           style={styles.input}
         />
         {isAvailable ? (
-          <Button title="Send SMS" onPress={sendSms} />
+          <Button textColor="#66443e" mode="elevated" onPress={sendSms}>
+            Send
+          </Button>
         ) : (
-          <Button title="Send SMS" />
+          <Button
+            textColor="#66443e"
+            mode="elevated"
+            disabled={true}
+            onPress={sendSms}
+          >
+            Send
+          </Button>
         )}
         <StatusBar style="auto" />
       </View>

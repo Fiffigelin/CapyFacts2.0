@@ -108,7 +108,7 @@ export default function CapyCard({ id, image, fact }: Props) {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    // flex: 1,
     alignItems: "flex-end",
     justifyContent: "center",
     padding: 20,
