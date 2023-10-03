@@ -23,6 +23,7 @@ Heres a mix-match for making the arrayChunk in FavoritesScreen.tsx
 4. `StyleSheet`
 5. `SafeAreaProvider`
 6. `FlatList`
+7. `TextInput`
 
 ## Expo SDK used in this app:
 
@@ -45,12 +46,12 @@ lista över genomförda krav.
 [x] React Navigation används för att skapa en bättre upplevelse i appen.
 [x] Git & GitHub har använts
 [x] Projektmappen innehåller en README.md fil - (läs ovan för mer info)
-[] Uppgiften lämnas in i tid!
-[] Muntlig presentation är genomförd
+[x] Uppgiften lämnas in i tid!
+[x] Muntlig presentation är genomförd
 
 ## Krav för väl godkänt:
 
-[] Alla punkter för godkänt är uppfyllda
+[x] Alla punkter för godkänt är uppfyllda
 [x] Ytterligare en valfri extern modul används i projektet.
 [x] Appen ska prata med ett Web-API för att hämta data.
-[] Appen ska laseras på en Appstore (Deadline samma dag som kursen slutar)
+[?] Appen ska laseras på en Appstore (Deadline samma dag som kursen slutar)
