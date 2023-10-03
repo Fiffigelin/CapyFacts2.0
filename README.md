@@ -1,6 +1,14 @@
-## CapyFacts
+## CapyFacts1.0
 
 The first assignment in the course 'App Development' with David Jensen as part of the System Developer.NET program at Yrkeshögskolan i Borås, SUVNET22
+
+## Introduction to CapyFacts1.0
+
+Welcome to this app where you can discover random images and facts about capybaras through a open web-api! Save your favorite images and facts and send the randomly fetched facts to your friends or even your foes via SMS!
+
+## Start the app
+
+To start the app you need to run `npm i` the first time and use
 
 ## Idiocy at an elite level
 
