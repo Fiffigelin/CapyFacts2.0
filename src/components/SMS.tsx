@@ -58,7 +58,6 @@ export default function App({ props }: SMSProps) {
             Send
           </Button>
         )}
-        <StatusBar style="auto" />
       </View>
     </>
   );
@@ -66,11 +65,9 @@ export default function App({ props }: SMSProps) {
 
 const styles = StyleSheet.create({
   container: {
-    // flex: 1,
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "center",
-    // alignContent: "center",
   },
   input: {
     height: 40,

@@ -1,13 +1,12 @@
 import { Feather, MaterialIcons } from "@expo/vector-icons";
 import React, { useEffect, useState } from "react";
-import { Modal, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { Card } from "react-native-paper";
 import { useFavoriteContext } from "../context/FavoriteContext";
-import SMS from "./SMS";
 import { randomId } from "../utilities/RandomIdGenerator";
 import Snackbar from "./Snackbar";
-
-// import SmsModal from "./SmsModal";
+import SmsModal from "./SmsModal";
+import { StatusBar } from "expo-status-bar";
 
 type Props = {
   id: string;
@@ -52,6 +51,15 @@ export default function CapyCard({ id, image, fact }: Props) {
     }
   }
 
+  function closeModal() {
+    setOpenModal(false);
+    return (
+      <>
+        <StatusBar style="auto" />
+      </>
+    );
+  }
+
   useEffect(() => {
     const capy = favorites.find((favorite) => favorite.id === id);
     console.log(`capy: ${capy?.id}`);
@@ -60,37 +68,13 @@ export default function CapyCard({ id, image, fact }: Props) {
 
   function renderModal() {
     return (
-      <Modal visible={openModal} animationType="slide" transparent={true}>
-        <View
-          style={{
-            flex: 1,
-            justifyContent: "center",
-            alignItems: "center",
-            backgroundColor: "rgba(0, 0, 0, 0.5)",
-          }}
-        >
-          <View
-            style={{
-              backgroundColor: "#e2d1ce",
-              padding: 15,
-              width: "90%",
-              height: "auto",
-              borderRadius: 10,
-            }}
-          >
-            <View
-              style={{
-                alignItems: "flex-end",
-              }}
-            >
-              <TouchableOpacity onPress={() => setOpenModal(false)}>
-                <MaterialIcons name="close" size={40} color="black" />
-              </TouchableOpacity>
-            </View>
-            <SMS props={fact} />
-          </View>
-        </View>
-      </Modal>
+      <>
+        <SmsModal
+          visible={openModal}
+          onClose={() => closeModal()}
+          fact={fact}
+        />
+      </>
     );
   }
 
