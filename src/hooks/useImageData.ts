@@ -16,9 +16,8 @@ export default function useImageData() {
         const imageUrl = image.data.url;
 
         await AsyncStorage.setItem("dailyImage", imageUrl);
-        await AsyncStorage.setItem("dailyImageDate", new Date().toISOString());
-        console.log(imageUrl);
         setImageData(imageUrl);
+        
         return imageUrl;
       } else {
         console.error("Api request failed");
@@ -32,10 +31,6 @@ export default function useImageData() {
     const getCache = async () => {
       try {
         const cachedImage = await AsyncStorage.getItem("dailyImage");
-        const cachedDate = await AsyncStorage.getItem("dailyImageDate");
-        // If the image is from the same day
-        // const cachedDateObj = new Date(cachedDate);
-        // const currentDate = new Date();
 
         if (cachedImage) {
           setImageData(cachedImage);

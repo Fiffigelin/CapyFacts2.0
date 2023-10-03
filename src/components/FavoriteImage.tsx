@@ -1,24 +1,16 @@
 import { Image } from "expo-image";
 import React from "react";
 import { StyleSheet, View } from "react-native";
-import { Favorite } from "../types/Types";
+import { Capy } from "../types/Types";
 
 interface Props {
-  favorite: Favorite;
+  favorite: Capy;
 }
 
 export default function FavoriteImage({ favorite }: Props) {
   return (
     <View style={styles.cardContainer}>
-      <Image
-        style={{
-          width: 125,
-          height: 125,
-          objectFit: "contain",
-          borderRadius: 8,
-        }}
-        source={favorite.image}
-      />
+      <Image style={styles.image} source={favorite.image} />
     </View>
   );
 }
@@ -26,12 +18,16 @@ export default function FavoriteImage({ favorite }: Props) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    // backgroundColor: "#fff",
     padding: 50,
   },
   cardContainer: {
-    // backgroundColor: "#fff",
     padding: 2,
     marginTop: 2,
+  },
+  image: {
+    width: 125,
+    height: 125,
+    objectFit: "contain",
+    borderRadius: 8,
   },
 });

@@ -8,11 +8,11 @@ import {
 import useFactData from "../hooks/useFactData";
 import useImageData from "../hooks/useImageData";
 import useDataStorage from "../hooks/useNewData";
-import { Favorite } from "../types/Types";
+import { Capy } from "../types/Types";
 import { randomId } from "../utilities/RandomIdGenerator";
 
 type NewDataContextType = {
-  newCapy?: Favorite;
+  newCapy?: Capy;
   createNewCapy: () => void;
   deleteNewCapy: (id: string) => void;
 };
@@ -24,7 +24,7 @@ export function useNewDataContext() {
 }
 
 export function NewDataProvider(props: PropsWithChildren) {
-  const [newCapy, setNewCapy] = useState<Favorite>();
+  const [newCapy, setNewCapy] = useState<Capy>();
   const {
     fetchDataStorage,
     saveDataStorage,
@@ -54,7 +54,7 @@ export function NewDataProvider(props: PropsWithChildren) {
     const factURL = await refetchFact();
 
     console.log(`new capy: ` + imageURL + factURL);
-    const newCapy: Favorite = {
+    const newCapy: Capy = {
       id: randomId(),
       image: imageURL as string,
       fact: factURL as string,

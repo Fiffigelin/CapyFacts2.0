@@ -18,11 +18,7 @@ export default function FavoriteDetailScreen({ route }: DetailScreenProps) {
 
   return (
     <LinearGradient
-      // colors={["#4c669f", "#3b5998", "#192f6a"]} //blå
-      // colors={["#e2d2c3", "#b0855c"]} //roseguld
       colors={["#d1b7b2", "#9f6a60"]} //rose
-      // colors={["#dfe0e0", "#8c8e8c"]} //silver
-      // colors={["#efc275", "#E9AE49", "#DB941A"]} //gul
       locations={[0.5, 1]}
       style={styles.background}
     >
@@ -44,7 +40,6 @@ export default function FavoriteDetailScreen({ route }: DetailScreenProps) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    // backgroundColor: "#fff",
     alignItems: "center",
     justifyContent: "center",
   },

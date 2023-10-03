@@ -14,7 +14,6 @@ export default function Snackbar({ props }: SnackBarProps) {
 
   useEffect(() => {
     if (props) {
-      // Visa Snackbar endast om props är true
       setVisible(true);
     }
   }, [props]);

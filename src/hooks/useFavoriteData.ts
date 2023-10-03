@@ -1,17 +1,15 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useCallback, useState } from "react";
-import { Favorite } from "../types/Types";
+import { Capy } from "../types/Types";
 
 export default function useFavoriteData() {
-  const [favoritesData, setFavoritesData] = useState<Favorite[] | undefined>(
-    []
-  );
+  const [favoritesData, setFavoritesData] = useState<Capy[] | undefined>([]);
 
   const fetchFavoritesStorage = useCallback(async () => {
     try {
       const cachedFavorites = await AsyncStorage.getItem("favorites");
       if (cachedFavorites) {
-        const parsedFavorites: Favorite[] = JSON.parse(cachedFavorites);
+        const parsedFavorites: Capy[] = JSON.parse(cachedFavorites);
         return parsedFavorites;
       }
     } catch (error) {
@@ -20,11 +18,10 @@ export default function useFavoriteData() {
   }, []);
 
   const saveFavoriteStorage = useCallback(
-    async (favorite: Favorite) => {
+    async (favorite: Capy) => {
       try {
-        // Hämtar favoriter från AsyncStorage
         const cachedFavorites = await AsyncStorage.getItem("favorites");
-        const parsedFavorites: Favorite[] = cachedFavorites
+        const parsedFavorites: Capy[] = cachedFavorites
           ? JSON.parse(cachedFavorites)
           : [];
 
@@ -48,7 +45,7 @@ export default function useFavoriteData() {
       try {
         const cachedFavorites = await AsyncStorage.getItem("favorites");
         if (cachedFavorites) {
-          const parsedFavorites: Favorite[] = JSON.parse(cachedFavorites);
+          const parsedFavorites: Capy[] = JSON.parse(cachedFavorites);
 
           const updatedFavorites = parsedFavorites.filter(
             (favorite) => favorite.id !== id
@@ -73,7 +70,7 @@ export default function useFavoriteData() {
     try {
       const cachedFavorites = await AsyncStorage.getItem("favorites");
       if (cachedFavorites) {
-        const parsedFavorites: Favorite[] = JSON.parse(cachedFavorites);
+        const parsedFavorites: Capy[] = JSON.parse(cachedFavorites);
         console.log("Cached favorites from AsyncStorage:", parsedFavorites);
       } else {
         console.log("No cached favorites found in AsyncStorage.");

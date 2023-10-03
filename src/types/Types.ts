@@ -1,4 +1,4 @@
-export type Favorite = {
+export type Capy = {
   id: string;
   image: string;
   fact: string;

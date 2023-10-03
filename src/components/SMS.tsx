@@ -45,12 +45,18 @@ export default function App({ props }: SMSProps) {
           style={styles.input}
         />
         {isAvailable ? (
-          <Button textColor="#66443e" mode="elevated" onPress={sendSms}>
+          <Button
+            uppercase={true}
+            textColor="#010101"
+            mode="elevated"
+            onPress={sendSms}
+          >
             Send
           </Button>
         ) : (
           <Button
-            textColor="#66443e"
+            uppercase={true}
+            textColor="#010101"
             mode="elevated"
             disabled={true}
             onPress={sendSms}

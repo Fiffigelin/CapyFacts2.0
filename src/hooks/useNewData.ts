@@ -1,15 +1,15 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useCallback, useState } from "react";
-import { Favorite } from "../types/Types";
+import { Capy } from "../types/Types";
 
 export default function useDataStorage() {
-  const [newData, setNewData] = useState<Favorite | undefined>();
+  const [newData, setNewData] = useState<Capy | undefined>();
 
   const fetchDataStorage = useCallback(async () => {
     try {
       const cachedData = await AsyncStorage.getItem("newData");
       if (cachedData) {
-        const parsedData: Favorite = JSON.parse(cachedData);
+        const parsedData: Capy = JSON.parse(cachedData);
         setNewData(parsedData);
         logCachedData();
         return parsedData;
@@ -20,7 +20,7 @@ export default function useDataStorage() {
   }, []);
 
   const saveDataStorage = useCallback(
-    async (favorite: Favorite) => {
+    async (favorite: Capy) => {
       try {
         if (favorite) {
           await AsyncStorage.setItem("newData", JSON.stringify(favorite));
@@ -40,7 +40,7 @@ export default function useDataStorage() {
     try {
       const cachedData = await AsyncStorage.getItem("newData");
       if (cachedData) {
-        const parsedData: Favorite = JSON.parse(cachedData);
+        const parsedData: Capy = JSON.parse(cachedData);
         console.log("Cached data from AsyncStorage:", parsedData);
       } else {
         console.log("No cached data found in AsyncStorage.");
@@ -50,6 +50,7 @@ export default function useDataStorage() {
     }
   }
 
+  //felhantering
   const deleteDataStorage = useCallback(
     async (id: string) => {
       try {

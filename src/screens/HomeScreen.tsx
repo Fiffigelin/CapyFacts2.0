@@ -25,7 +25,12 @@ export default function HomeScreen() {
         />
       </View>
       <View style={styles.buttonContainer}>
-        <Button textColor="#66443e" mode="elevated" onPress={createNewCapy}>
+        <Button
+          uppercase={true}
+          textColor="#010101"
+          mode="elevated"
+          onPress={createNewCapy}
+        >
           New CapyFact
         </Button>
       </View>

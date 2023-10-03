@@ -35,7 +35,7 @@ Heres a mix-match for making the arrayChunk in FavoritesScreen.tsx
 
 ## Third module used in this app:
 
-1. `Card, Button, Modal`from @react-native-paper;
+1. `Card, Button, Modal, Snackbar`from @react-native-paper;
 
 ## Krav för godkänt:
 

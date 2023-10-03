@@ -1,8 +1,4 @@
-export interface Capy {
-  id: string;
-  image: string;
-  fact: string;
-}
+import { Capy } from "../src/types/Types";
 
 export const cards: Capy[] = [
   {

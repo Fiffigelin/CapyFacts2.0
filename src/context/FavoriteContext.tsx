@@ -6,12 +6,12 @@ import {
   useState,
 } from "react";
 import useFavoriteData from "../hooks/useFavoriteData";
-import { Favorite } from "../types/Types";
+import { Capy } from "../types/Types";
 
 type FavoriteContextType = {
   createFavorite: (id: string, image: string, fact: string) => void;
   deleteFavorite: (id: string) => void;
-  favorites: Favorite[];
+  favorites: Capy[];
   dailyFavorite: string | undefined;
 };
 
@@ -22,7 +22,7 @@ export function useFavoriteContext() {
 }
 
 export function FavoriteProvider(props: PropsWithChildren) {
-  const [favorites, setFavorites] = useState<Favorite[]>([]);
+  const [favorites, setFavorites] = useState<Capy[]>([]);
   const [dailyFavorite, setDailyFavorite] = useState<string>();
   const {
     fetchFavoritesStorage,
@@ -43,7 +43,7 @@ export function FavoriteProvider(props: PropsWithChildren) {
   }
 
   async function createFavorite(id: string, image: string, fact: string) {
-    const newFavorite: Favorite = {
+    const newFavorite: Capy = {
       id: id,
       image: image,
       fact: fact,
