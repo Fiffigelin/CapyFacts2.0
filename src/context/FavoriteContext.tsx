@@ -24,19 +24,14 @@ export function useFavoriteContext() {
 export function FavoriteProvider(props: PropsWithChildren) {
   const [favorites, setFavorites] = useState<Capy[]>([]);
   const [dailyFavorite, setDailyFavorite] = useState<string>();
-  const {
-    fetchFavoritesStorage,
-    saveFavoriteStorage,
-    deleteFavoriteStorage,
-    logCachedFavorites,
-  } = useFavoriteData();
+  const { fetchFavoritesStorage, saveFavoriteStorage, deleteFavoriteStorage } =
+    useFavoriteData();
 
   async function getFavorites() {
     const fetchedFavorites = await fetchFavoritesStorage();
 
     if (fetchedFavorites) {
       setFavorites(fetchedFavorites);
-      logCachedFavorites();
     } else {
       console.log("No chached favorites available");
     }

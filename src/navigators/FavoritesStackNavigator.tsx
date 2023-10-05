@@ -19,8 +19,16 @@ export default function FavoritesStackNavigator() {
         headerShadowVisible: false,
       }}
     >
-      <Stack.Screen name="Favorites" component={FavoritesScreen} />
-      <Stack.Screen name="Detail" component={FavoriteDetailScreen} />
+      <Stack.Screen
+        name="Favorites"
+        component={FavoritesScreen}
+        options={{ title: "" }}
+      />
+      <Stack.Screen
+        name="Detail"
+        component={FavoriteDetailScreen}
+        options={{ title: "Back" }}
+      />
     </Stack.Navigator>
   );
 }

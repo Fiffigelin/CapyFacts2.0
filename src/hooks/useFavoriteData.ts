@@ -85,6 +85,5 @@ export default function useFavoriteData() {
     fetchFavoritesStorage,
     saveFavoriteStorage,
     deleteFavoriteStorage,
-    logCachedFavorites,
   };
 }
