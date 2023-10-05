@@ -41,7 +41,6 @@ export default function useDataStorage() {
       const cachedData = await AsyncStorage.getItem("newData");
       if (cachedData) {
         const parsedData: Capy = JSON.parse(cachedData);
-        console.log("Cached data from AsyncStorage:", parsedData);
       } else {
         console.log("No cached data found in AsyncStorage.");
       }

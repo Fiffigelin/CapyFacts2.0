@@ -24,7 +24,7 @@ export default function FavoritesScreen({ navigation }: FavoritesScreenProps) {
 
   return (
     <LinearGradient
-      colors={["#d1b7b2", "#9f6a60"]} //rose
+      colors={["#d1b7b2", "#9f6a60"]}
       locations={[0.5, 1]}
       style={styles.background}
     >

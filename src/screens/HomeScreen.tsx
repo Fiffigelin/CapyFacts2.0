@@ -9,11 +9,7 @@ export default function HomeScreen() {
 
   return (
     <LinearGradient
-      // colors={["#4c669f", "#3b5998", "#192f6a"]} //blå
-      // colors={["#e2d2c3", "#b0855c"]} //roseguld
-      colors={["#d1b7b2", "#9f6a60"]} //rose
-      // colors={["#dfe0e0", "#8c8e8c"]} //silver
-      // colors={["#efc275", "#E9AE49", "#DB941A"]} //gul
+      colors={["#d1b7b2", "#9f6a60"]}
       locations={[0.5, 1]}
       style={styles.background}
     >

@@ -17,10 +17,10 @@ export default function useImageData() {
 
         await AsyncStorage.setItem("dailyImage", imageUrl);
         setImageData(imageUrl);
-        
+
         return imageUrl;
       } else {
-        console.error("Api request failed");
+        console.log("Api request failed");
       }
     } catch (error) {
       console.error("Error fetching image: ", error);
@@ -38,7 +38,7 @@ export default function useImageData() {
           fetchRandomImage();
         }
       } catch (error) {
-        console.log("Error getting cached image: ", error);
+        console.error("Error getting cached image: ", error);
       }
     };
 

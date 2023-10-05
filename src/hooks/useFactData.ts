@@ -13,11 +13,11 @@ export default function useFactData() {
       if (fact.success) {
         const factString = fact.data.fact;
         await AsyncStorage.setItem("dailyFact", factString);
-        console.log(factString);
+
         setFactData(factString);
         return factString;
       } else {
-        console.error("Api request failed");
+        console.log("Api request failed");
       }
     } catch (error) {
       console.error("Error fetching fact: ", error);
@@ -34,7 +34,7 @@ export default function useFactData() {
           fetchRandomFact();
         }
       } catch (error) {
-        console.log("Error getting cached fact: ", error);
+        console.error("Error getting cached fact: ", error);
       }
     };
 

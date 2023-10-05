@@ -1,5 +1,4 @@
 import * as SMS from "expo-sms";
-import { StatusBar } from "expo-status-bar";
 import { useEffect, useState } from "react";
 import { StyleSheet, View, Text, TextInput } from "react-native";
 import { Button } from "react-native-paper";
@@ -19,17 +18,12 @@ export default function App({ props }: SMSProps) {
       setIsAvailable(isSmsAvailable);
     };
 
-    setMessage("Heres a fascinating fact about capybaras: " + props);
+    setMessage("Here's a fascinating fact about capybaras: " + props);
     checkSmsAvailability();
   }, [setIsAvailable]);
 
   const sendSms = async () => {
-    const { result } = await SMS.sendSMSAsync(
-      phoneNumber as string,
-      message as string
-    );
-
-    console.log(result);
+    await SMS.sendSMSAsync(phoneNumber as string, message as string);
   };
 
   return (
@@ -44,26 +38,15 @@ export default function App({ props }: SMSProps) {
           onChangeText={(value) => setPhoneNumber(value)}
           style={styles.input}
         />
-        {isAvailable ? (
-          <Button
-            uppercase={true}
-            textColor="#010101"
-            mode="elevated"
-            onPress={sendSms}
-          >
-            Send
-          </Button>
-        ) : (
-          <Button
-            uppercase={true}
-            textColor="#010101"
-            mode="elevated"
-            disabled={true}
-            onPress={sendSms}
-          >
-            Send
-          </Button>
-        )}
+        <Button
+          uppercase={true}
+          textColor="#010101"
+          mode="elevated"
+          onPress={sendSms}
+          disabled={!isAvailable}
+        >
+          Send
+        </Button>
       </View>
     </>
   );

@@ -36,11 +36,9 @@ export function NewDataProvider(props: PropsWithChildren) {
 
   async function getData() {
     const fetchedData = await fetchDataStorage();
-    console.log("fetched data", fetchedData);
 
     if (fetchedData) {
       setNewCapy(fetchedData);
-      console.log("newData", newCapy);
       logCachedData();
       return true;
     } else {
@@ -53,7 +51,6 @@ export function NewDataProvider(props: PropsWithChildren) {
     const imageURL = await refetchImage();
     const factURL = await refetchFact();
 
-    console.log(`new capy: ` + imageURL + factURL);
     const newCapy: Capy = {
       id: randomId(),
       image: imageURL as string,
@@ -62,7 +59,6 @@ export function NewDataProvider(props: PropsWithChildren) {
 
     await saveDataStorage(newCapy);
     setNewCapy(newCapy);
-    console.log("NewCapy : ", newCapy);
   }
 
   async function deleteNewCapy(id: string) {

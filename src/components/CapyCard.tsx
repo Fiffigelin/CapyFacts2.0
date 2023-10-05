@@ -4,9 +4,8 @@ import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { Card } from "react-native-paper";
 import { useFavoriteContext } from "../context/FavoriteContext";
 import { randomId } from "../utilities/RandomIdGenerator";
-import Snackbar from "./Snackbar";
 import SmsModal from "./SmsModal";
-import { StatusBar } from "expo-status-bar";
+import Snackbar from "./Snackbar";
 
 type Props = {
   id: string;
@@ -23,9 +22,8 @@ export default function CapyCard({ id, image, fact }: Props) {
   function favoritesOnPress() {
     const newIsFavorite = !isFavorite;
     setIsFavorite(newIsFavorite);
-    console.log(newIsFavorite);
 
-    if (newIsFavorite === true) {
+    if (newIsFavorite) {
       const existingFavorite = favorites.find(
         (fav) => fav.image === image && fav.fact === fact
       );
@@ -46,37 +44,15 @@ export default function CapyCard({ id, image, fact }: Props) {
         createFavorite(id, image, fact);
       }
     } else {
-      console.log("deleted");
       deleteFavorite(id);
     }
   }
 
-  function closeModal() {
-    setOpenModal(false);
-    return (
-      <>
-        <StatusBar style="auto" />
-      </>
-    );
-  }
-
   useEffect(() => {
     const capy = favorites.find((favorite) => favorite.id === id);
-    console.log(`capy: ${capy?.id}`);
+
     setIsFavorite(!!capy);
   }, [id, favorites]);
-
-  function renderModal() {
-    return (
-      <>
-        <SmsModal
-          visible={openModal}
-          onClose={() => closeModal()}
-          fact={fact}
-        />
-      </>
-    );
-  }
 
   return (
     <>
@@ -107,7 +83,11 @@ export default function CapyCard({ id, image, fact }: Props) {
             <Feather name="send" size={30} color="#fbf8f8" />
           </TouchableOpacity>
         </View>
-        {renderModal()}
+        <SmsModal
+          visible={openModal}
+          onClose={() => setOpenModal(false)}
+          fact={fact}
+        />
       </View>
       {alreadyFavorite && <Snackbar props={alreadyFavorite} />}
     </>

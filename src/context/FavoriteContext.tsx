@@ -62,7 +62,6 @@ export function FavoriteProvider(props: PropsWithChildren) {
     if (id === dailyFavorite) {
       setDailyFavorite("");
     }
-    console.log(id);
   }
 
   useEffect(() => {
