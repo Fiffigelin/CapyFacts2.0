@@ -17,14 +17,17 @@
     "expo-linear-gradient": "~14.1.4",
     "expo-sms": "~13.1.4",
     "expo-status-bar": "~2.2.3",
-    "react": "19.0.0",
+    "glob": "^11.0.2",
+    "inflight": "^1.0.6",
+    "react": "^19.1.0",
     "react-native": "0.79.2",
     "react-native-paper": "^5.14.5",
-    "react-native-safe-area-context": "5.4.0"
+    "react-native-safe-area-context": "5.4.0",
+    "rimraf": "^6.0.1"
   },
   "devDependencies": {
     "@babel/core": "^7.27.1",
-    "@types/react": "~19.0.10",
+    "@types/react": "^19.1.5",
     "typescript": "^5.8.3"
   },
   "private": true
