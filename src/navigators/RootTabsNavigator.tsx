@@ -4,7 +4,16 @@ import React from "react";
 import HomeScreen from "../screens/HomeScreen";
 import FavoritesStackNavigator from "./FavoritesStackNavigator";
 
-const Tabs = createBottomTabNavigator();
+export type RootTabScreens = {
+  // Todo: add a splash screen
+  //SplashScreen: undefined;
+  Home: undefined;
+  FavoritesTab: undefined;
+  // Todo: add settings screen
+  //Settings: undefined;
+};
+
+const Tabs = createBottomTabNavigator<RootTabScreens>();
 
 export default function RootTabsNavigator() {
   return (
