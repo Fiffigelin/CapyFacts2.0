@@ -7,16 +7,14 @@ import { NewDataProvider } from "./src/context/NewDataContext";
 import RootTabsNavigator from "./src/navigators/RootTabsNavigator";
 
 export default function App() {
-  return (
-    <SafeAreaProvider>
-      <NewDataProvider>
-        <FavoriteProvider>
-          <NavigationContainer>
-            <StatusBar style="auto" />
-            <RootTabsNavigator />
-          </NavigationContainer>
-        </FavoriteProvider>
-      </NewDataProvider>
-    </SafeAreaProvider>
-  );
+	return (
+		<SafeAreaProvider>
+			<NewDataProvider>
+				<FavoriteProvider>
+					<StatusBar style="auto" />
+					<RootTabsNavigator />
+				</FavoriteProvider>
+			</NewDataProvider>
+		</SafeAreaProvider>
+	);
 }
