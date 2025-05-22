@@ -1,7 +1,7 @@
 import { MaterialIcons } from "@expo/vector-icons";
 import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import React, { useState } from "react";
+import React from "react";
 import HomeScreen from "../screens/HomeScreen";
 import FavoritesStackNavigator from "./FavoritesStackNavigator";
 import {
@@ -13,6 +13,8 @@ import {
 } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { BlurView } from "expo-blur";
+import { useThemeContext } from "../context/ThemeContext";
+import { useTheme } from "react-native-paper";
 
 export type RootTabScreens = {
 	// Todo: add a splash screen
@@ -26,15 +28,18 @@ export type RootTabScreens = {
 const Tabs = createBottomTabNavigator<RootTabScreens>();
 
 export default function RootTabsNavigator() {
-	const [isDarkMode, setIsDarkMode] = useState(false);
+	const { colors } = useTheme();
+
 	const Header = () => {
+		const { isDarkMode, toggleTheme } = useThemeContext();
+
 		return (
 			<View
 				style={{
 					flexDirection: "row",
 					position: "absolute",
 					top: 0,
-					width: "100%",
+					right: 0,
 					alignItems: "center",
 					justifyContent: "flex-end",
 					paddingVertical: 20,
@@ -42,13 +47,18 @@ export default function RootTabsNavigator() {
 					zIndex: 10,
 				}}
 			>
-				<Text>Dark Mode</Text>
+				<Text style={{ color: colors.onBackground, fontWeight: "bold" }}>
+					{isDarkMode ? "Dark" : "Light"}
+				</Text>
 				<Switch
+					trackColor={{
+						false: colors.inversePrimary,
+						true: colors.outline,
+					}}
+					thumbColor={isDarkMode ? colors.primary : colors.outline}
 					style={{ margin: 15 }}
 					value={isDarkMode}
-					onValueChange={() => {
-						setIsDarkMode((prev) => !prev);
-					}}
+					onValueChange={toggleTheme}
 				/>
 			</View>
 		);
@@ -61,8 +71,8 @@ export default function RootTabsNavigator() {
 				<Tabs.Navigator
 					screenOptions={{
 						tabBarShowLabel: false,
-						tabBarActiveTintColor: "#fbf8f8",
-						tabBarInactiveTintColor: "#ccb0ab",
+						tabBarActiveTintColor: colors.primary,
+						tabBarInactiveTintColor: colors.secondary,
 						tabBarStyle: {
 							position: "absolute",
 							borderColor: "transparent",

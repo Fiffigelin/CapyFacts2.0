@@ -1,4 +1,4 @@
-import { LinearGradient } from "expo-linear-gradient";
+import { useTheme } from "react-native-paper";
 import { StyleSheet, View } from "react-native";
 import { Button } from "react-native-paper";
 import CapyCard from "../components/CapyCard";
@@ -8,12 +8,17 @@ import { useBottomTabBarHeight } from "@react-navigation/bottom-tabs";
 export default function HomeScreen() {
 	const { newCapy, createNewCapy } = useNewDataContext();
 	const bottomTabBarHeight = useBottomTabBarHeight();
+	const { colors } = useTheme();
 
 	return (
-		<LinearGradient
-			colors={["#d1b7b2", "#9f6a60"]}
-			locations={[0.5, 1]}
-			style={[styles.background, { paddingBottom: bottomTabBarHeight }]}
+		<View
+			style={[
+				styles.background,
+				{
+					backgroundColor: colors.background,
+					paddingBottom: bottomTabBarHeight,
+				},
+			]}
 		>
 			<View>
 				<CapyCard
@@ -25,14 +30,15 @@ export default function HomeScreen() {
 			<View style={styles.buttonContainer}>
 				<Button
 					uppercase={true}
-					textColor="#010101"
+					textColor={colors.onPrimary}
+					buttonColor={colors.primary}
 					mode="elevated"
 					onPress={createNewCapy}
 				>
 					New CapyFact
 				</Button>
 			</View>
-		</LinearGradient>
+		</View>
 	);
 }
 
@@ -43,6 +49,7 @@ const styles = StyleSheet.create({
 		justifyContent: "center",
 	},
 	buttonContainer: {
+		borderRadius: 8,
 		justifyContent: "center",
 	},
 });
