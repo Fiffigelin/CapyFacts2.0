@@ -1,7 +1,7 @@
 import { Feather, MaterialIcons } from "@expo/vector-icons";
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
-import { Card } from "react-native-paper";
+import { Card, useTheme } from "react-native-paper";
 import { useFavoriteContext } from "../context/FavoriteContext";
 import { randomId } from "../utilities/RandomIdGenerator";
 import SmsModal from "./SmsModal";
@@ -18,6 +18,8 @@ export default function CapyCard({ id, image, fact }: Props) {
 	const [openModal, setOpenModal] = useState(false);
 	const [alreadyFavorite, setAlreadyFavorite] = useState(false);
 	const { createFavorite, deleteFavorite, favorites } = useFavoriteContext();
+
+	const { colors } = useTheme();
 
 	function favoritesOnPress() {
 		const newIsFavorite = !isFavorite;
@@ -54,10 +56,16 @@ export default function CapyCard({ id, image, fact }: Props) {
 		setIsFavorite(!!capy);
 	}, [id, favorites]);
 
+	const handleShowingModal = useCallback(() => {
+		setOpenModal((prev) => !prev);
+	}, []);
+
 	return (
 		<>
 			<View style={styles.container}>
-				<Card style={styles.cardContainer}>
+				<Card
+					style={[styles.cardContainer, { backgroundColor: colors.surface }]}
+				>
 					<Card.Cover
 						source={{ uri: image }}
 						style={{
@@ -67,29 +75,37 @@ export default function CapyCard({ id, image, fact }: Props) {
 						}}
 					/>
 					<Card.Content style={{ paddingTop: 12, paddingBottom: 12 }}>
-						<Text style={{ fontSize: 24, textAlign: "justify" }}>{fact}</Text>
+						<Text
+							style={{
+								fontSize: 24,
+								textAlign: "justify",
+								color: colors.onSurface,
+							}}
+						>
+							{fact}
+						</Text>
 					</Card.Content>
 				</Card>
 				<View style={styles.buttonContainer}>
 					<TouchableOpacity onPress={favoritesOnPress}>
 						{isFavorite ? (
-							<MaterialIcons name="favorite" size={30} color="black" />
+							<MaterialIcons name="favorite" size={30} color={colors.error} />
 						) : (
 							<MaterialIcons
 								style={{ justifyContent: "flex-start" }}
 								name="favorite-outline"
-								color="black"
+								color={colors.primary}
 								size={30}
 							/>
 						)}
 					</TouchableOpacity>
 					<TouchableOpacity onPress={() => setOpenModal(true)}>
-						<Feather name="send" size={30} color="black" />
+						<Feather name="send" size={30} color={colors.primary} />
 					</TouchableOpacity>
 				</View>
 				<SmsModal
 					visible={openModal}
-					onClose={() => setOpenModal(false)}
+					onClose={handleShowingModal}
 					fact={fact}
 				/>
 			</View>
@@ -105,7 +121,6 @@ const styles = StyleSheet.create({
 		padding: 20,
 	},
 	cardContainer: {
-		backgroundColor: "#fff",
 		alignItems: "center",
 		justifyContent: "center",
 		width: 350,

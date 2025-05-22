@@ -5,6 +5,8 @@ import React from "react";
 import { StyleSheet, Text, View } from "react-native";
 import CapyCard from "../../components/CapyCard";
 import { FavoriteStackScreens } from "../../navigators/FavoritesStackNavigator";
+import { useTheme } from "react-native-paper";
+import { useBottomTabBarHeight } from "@react-navigation/bottom-tabs";
 
 type DetailScreenRouteProp = RouteProp<FavoriteStackScreens, "Detail">;
 
@@ -15,9 +17,19 @@ type DetailScreenProps = {
 
 export default function FavoriteDetailScreen({ route }: DetailScreenProps) {
 	const { selectedCard } = route.params;
+	const { colors } = useTheme();
+	const bottomTabBarHeight = useBottomTabBarHeight();
 
 	return (
-		<View style={styles.container}>
+		<View
+			style={[
+				styles.container,
+				{
+					backgroundColor: colors.background,
+					paddingBottom: bottomTabBarHeight,
+				},
+			]}
+		>
 			{selectedCard ? (
 				<CapyCard
 					id={selectedCard.id}
@@ -36,6 +48,5 @@ const styles = StyleSheet.create({
 		flex: 1,
 		alignItems: "center",
 		justifyContent: "center",
-		backgroundColor: "white",
 	},
 });

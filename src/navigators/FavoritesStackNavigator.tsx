@@ -17,7 +17,10 @@ export default function FavoritesStackNavigator() {
 	return (
 		<Stack.Navigator
 			screenOptions={{
-				headerStyle: { backgroundColor: colors.background },
+				headerStyle: {
+					backgroundColor: colors.background,
+				},
+				headerTintColor: colors.onBackground,
 				headerShadowVisible: false,
 			}}
 		>
@@ -29,7 +32,13 @@ export default function FavoritesStackNavigator() {
 			<Stack.Screen
 				name="Detail"
 				component={FavoriteDetailScreen}
-				options={{ title: "Back" }}
+				options={{
+					title: "Back",
+					headerTitleStyle: {
+						color: colors.onBackground,
+						fontSize: 16,
+					},
+				}}
 			/>
 		</Stack.Navigator>
 	);

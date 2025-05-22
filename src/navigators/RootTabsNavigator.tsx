@@ -32,7 +32,6 @@ export default function RootTabsNavigator() {
 
 	const Header = () => {
 		const { isDarkMode, toggleTheme } = useThemeContext();
-
 		return (
 			<View
 				style={{
@@ -47,16 +46,22 @@ export default function RootTabsNavigator() {
 					zIndex: 10,
 				}}
 			>
-				<Text style={{ color: colors.onBackground, fontWeight: "bold" }}>
+				<Text
+					style={{
+						color: colors.onBackground,
+						fontWeight: "bold",
+						fontSize: 16,
+					}}
+				>
 					{isDarkMode ? "Dark" : "Light"}
 				</Text>
 				<Switch
 					trackColor={{
-						false: colors.inversePrimary,
-						true: colors.outline,
+						false: colors.secondary,
+						true: colors.secondary,
 					}}
-					thumbColor={isDarkMode ? colors.primary : colors.outline}
-					style={{ margin: 15 }}
+					thumbColor={colors.primary}
+					style={{ margin: 10 }}
 					value={isDarkMode}
 					onValueChange={toggleTheme}
 				/>

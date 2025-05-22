@@ -6,9 +6,7 @@ import { LightTheme, DarkTheme } from "./src/styles/theme";
 
 export default function MainApp() {
 	const { isDarkMode } = useThemeContext();
-	const theme = isDarkMode ? MD3DarkTheme : MD3LightTheme;
-
-	console.log(isDarkMode);
+	const theme = isDarkMode ? DarkTheme : LightTheme;
 
 	return (
 		<PaperProvider theme={theme}>
