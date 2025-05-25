@@ -4,6 +4,7 @@ import { Button } from "react-native-paper";
 import CapyCard from "../components/CapyCard";
 import { useNewDataContext } from "../context/NewDataContext";
 import { useBottomTabBarHeight } from "@react-navigation/bottom-tabs";
+import StyledButton from "../components/StyledButton";
 
 export default function HomeScreen() {
 	const { newCapy, createNewCapy } = useNewDataContext();
@@ -20,23 +21,18 @@ export default function HomeScreen() {
 				},
 			]}
 		>
-			<View>
-				<CapyCard
-					id={newCapy?.id as string}
-					image={newCapy?.image as string}
-					fact={newCapy?.fact as string}
-				/>
-			</View>
+			<CapyCard
+				id={newCapy?.id as string}
+				image={newCapy?.image as string}
+				fact={newCapy?.fact as string}
+			/>
 			<View style={styles.buttonContainer}>
-				<Button
-					uppercase={true}
-					textColor={colors.onPrimary}
-					buttonColor={colors.primary}
-					mode="elevated"
+				<StyledButton
+					mode="primary"
+					title="New CapyFact"
 					onPress={createNewCapy}
-				>
-					New CapyFact
-				</Button>
+					uppercase={true}
+				/>
 			</View>
 		</View>
 	);
