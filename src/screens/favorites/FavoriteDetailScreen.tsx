@@ -4,7 +4,7 @@ import { FavoriteStackScreens } from "../../navigators/FavoritesStackNavigator";
 import { Text, View } from "react-native";
 
 import React from "react";
-import CapyCard from "../../components/CapyCard";
+import CapyCard from "../../components/capycard/CapyCard";
 import useFavoriteStyle from "./hooks/useFavoriteStyle";
 
 type DetailScreenRouteProp = RouteProp<FavoriteStackScreens, "Detail">;

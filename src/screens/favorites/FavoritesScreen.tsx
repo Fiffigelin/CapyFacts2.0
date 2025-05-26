@@ -1,10 +1,10 @@
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
-import React from "react";
 import { FlatList, TouchableOpacity, View } from "react-native";
-import FavoriteImage from "../../components/FavoriteImage";
 import { useFavoriteContext } from "../../context/FavoriteContext";
 import { FavoriteStackScreens } from "../../navigators/FavoritesStackNavigator";
+import React from "react";
 import useFavoriteStyle from "./hooks/useFavoriteStyle";
+import FavoriteImage from "../../components/favoriteImage/FavoriteImage";
 
 type FavoritesScreenProps = {
 	navigation: NativeStackNavigationProp<FavoriteStackScreens, "Favorites">;

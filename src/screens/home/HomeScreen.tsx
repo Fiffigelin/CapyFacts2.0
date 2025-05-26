@@ -1,7 +1,7 @@
 import { View } from "react-native";
-import CapyCard from "../../components/CapyCard";
+import CapyCard from "../../components/capycard/CapyCard";
 import { useNewDataContext } from "../../context/NewDataContext";
-import StyledButton from "../../components/StyledButton";
+import StyledButton from "../../components/styledButton/StyledButton";
 import useHomeStyle from "./hooks/useHomeStyle";
 
 export default function HomeScreen() {
