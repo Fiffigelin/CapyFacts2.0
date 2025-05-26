@@ -1,6 +1,7 @@
 import React, { useCallback, useState } from "react";
 import SmsModal from "../smsModal/SmsModal";
 import useCapyCardStyle from "./hooks/useCapyCardStyle";
+import Shimmer from "../shimmer/Shimmer";
 
 import { Feather, MaterialIcons } from "@expo/vector-icons";
 import { Text, TouchableOpacity, View } from "react-native";
@@ -36,10 +37,20 @@ export default function CapyCard({ id, image, fact }: Props) {
 		<>
 			<View style={style.container}>
 				<Card style={style.cardContainer}>
-					<Card.Cover source={{ uri: image }} style={style.cardCover} />
-					<Card.Content style={style.cardContent}>
-						<Text style={style.factText}>{fact}</Text>
-					</Card.Content>
+					{image ? (
+						<Card.Cover source={{ uri: image }} style={style.cardCover} />
+					) : (
+						<Shimmer mode={"image"} shimmerHeight={300} shimmerWidth={350} />
+					)}
+					{fact ? (
+						<Card.Content style={style.cardContent}>
+							<Text style={style.factText}>{fact}</Text>
+						</Card.Content>
+					) : (
+						<Card.Content style={style.cardContent}>
+							<Shimmer mode={"text"} />
+						</Card.Content>
+					)}
 				</Card>
 				<View style={style.buttonContainer}>
 					<TouchableOpacity onPress={handleFavoriteToggle}>

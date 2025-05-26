@@ -34,7 +34,8 @@ export default function useFavoriteStyle() {
 		},
 		cardCover: {
 			width: 350,
-			height: 350,
+			height: 300,
+			maxHeight: 300,
 			resizeMode: "contain",
 		},
 		factText: {
