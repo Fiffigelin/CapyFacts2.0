@@ -1,7 +1,7 @@
 import { StyleSheet } from "react-native";
 import useRootStyle from "../../styles/useRootStyle";
 
-const useNavigationStyle = () => {
+export default function useNavigationStyle() {
 	const {
 		primary,
 		onPrimary,
@@ -98,6 +98,4 @@ const useNavigationStyle = () => {
 		StackHeaderTitleStyle,
 		Root,
 	};
-};
-
-export default useNavigationStyle;
+}

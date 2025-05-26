@@ -1,6 +1,6 @@
 import { useTheme } from "react-native-paper";
 
-const useRootStyle = () => {
+export default function useRootStyle() {
 	const { colors } = useTheme();
 
 	const primary = colors.primary;
@@ -30,6 +30,4 @@ const useRootStyle = () => {
 		tertiary,
 		onTertiary,
 	};
-};
-
-export default useRootStyle;
+}

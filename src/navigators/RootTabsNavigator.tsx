@@ -2,7 +2,7 @@ import { MaterialIcons } from "@expo/vector-icons";
 import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import React from "react";
-import HomeScreen from "../screens/HomeScreen";
+import HomeScreen from "../screens/home/HomeScreen";
 import FavoritesStackNavigator from "./FavoritesStackNavigator";
 import { Switch, TouchableWithoutFeedback, View, Text } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
