@@ -1,12 +1,10 @@
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
-import { LinearGradient } from "expo-linear-gradient";
-import React, { use } from "react";
-import { FlatList, StyleSheet, TouchableOpacity, View } from "react-native";
+import React from "react";
+import { FlatList, TouchableOpacity, View } from "react-native";
 import FavoriteImage from "../../components/FavoriteImage";
 import { useFavoriteContext } from "../../context/FavoriteContext";
 import { FavoriteStackScreens } from "../../navigators/FavoritesStackNavigator";
-import { useTheme } from "react-native-paper";
-import { useBottomTabBarHeight } from "@react-navigation/bottom-tabs";
+import useFavoriteStyle from "./hooks/useFavoriteStyle";
 
 type FavoritesScreenProps = {
 	navigation: NativeStackNavigationProp<FavoriteStackScreens, "Favorites">;
@@ -24,24 +22,15 @@ export default function FavoritesScreen({ navigation }: FavoritesScreenProps) {
 	const { favorites } = useFavoriteContext();
 	const chunkedCards = arrayChunk(favorites, 3);
 
-	const { colors } = useTheme();
-	const bottomTabBarHeight = useBottomTabBarHeight();
+	const { favorite } = useFavoriteStyle();
 
 	return (
-		<View
-			style={[
-				styles.container,
-				{
-					backgroundColor: colors.background,
-					paddingBottom: bottomTabBarHeight,
-				},
-			]}
-		>
+		<View style={favorite.container}>
 			<FlatList
 				alwaysBounceVertical={false}
 				data={chunkedCards}
 				renderItem={({ item }) => (
-					<View style={styles.row}>
+					<View style={favorite.row}>
 						{item.map((favorite) => (
 							<TouchableOpacity
 								key={favorite.id}
@@ -60,14 +49,3 @@ export default function FavoritesScreen({ navigation }: FavoritesScreenProps) {
 		</View>
 	);
 }
-
-const styles = StyleSheet.create({
-	container: {
-		flex: 1,
-		justifyContent: "flex-start",
-		padding: 12,
-	},
-	row: {
-		flexDirection: "row",
-	},
-});

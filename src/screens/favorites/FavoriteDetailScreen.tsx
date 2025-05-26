@@ -1,12 +1,11 @@
 import { RouteProp } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
-import { LinearGradient } from "expo-linear-gradient";
-import React from "react";
-import { StyleSheet, Text, View } from "react-native";
-import CapyCard from "../../components/CapyCard";
 import { FavoriteStackScreens } from "../../navigators/FavoritesStackNavigator";
-import { useTheme } from "react-native-paper";
-import { useBottomTabBarHeight } from "@react-navigation/bottom-tabs";
+import { Text, View } from "react-native";
+
+import React from "react";
+import CapyCard from "../../components/CapyCard";
+import useFavoriteStyle from "./hooks/useFavoriteStyle";
 
 type DetailScreenRouteProp = RouteProp<FavoriteStackScreens, "Detail">;
 
@@ -17,19 +16,10 @@ type DetailScreenProps = {
 
 export default function FavoriteDetailScreen({ route }: DetailScreenProps) {
 	const { selectedCard } = route.params;
-	const { colors } = useTheme();
-	const bottomTabBarHeight = useBottomTabBarHeight();
+	const { favoriteDetail } = useFavoriteStyle();
 
 	return (
-		<View
-			style={[
-				styles.container,
-				{
-					backgroundColor: colors.background,
-					paddingBottom: bottomTabBarHeight,
-				},
-			]}
-		>
+		<View style={favoriteDetail.container}>
 			{selectedCard ? (
 				<CapyCard
 					id={selectedCard.id}
@@ -42,11 +32,3 @@ export default function FavoriteDetailScreen({ route }: DetailScreenProps) {
 		</View>
 	);
 }
-
-const styles = StyleSheet.create({
-	container: {
-		flex: 1,
-		alignItems: "center",
-		justifyContent: "center",
-	},
-});

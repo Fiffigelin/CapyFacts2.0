@@ -1,45 +1,45 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useEffect, useState } from "react";
-import { FactResponse } from "../types/Types";
+import { FactResponse } from "../../types/Types";
 
 export default function useFactData() {
-  const [factData, setFactData] = useState<string | undefined>(undefined);
+	const [factData, setFactData] = useState<string | undefined>(undefined);
 
-  const fetchRandomFact = async () => {
-    try {
-      const response = await fetch("https://api.capy.lol/v1/fact?json=true");
-      const fact: FactResponse = await response.json();
+	const FetchRandomFact = async () => {
+		try {
+			const response = await fetch("https://api.capy.lol/v1/fact?json=true");
+			const fact: FactResponse = await response.json();
 
-      if (fact.success) {
-        const factString = fact.data.fact;
-        await AsyncStorage.setItem("dailyFact", factString);
+			if (fact.success) {
+				const factString = fact.data.fact;
+				await AsyncStorage.setItem("dailyFact", factString);
 
-        setFactData(factString);
-        return factString;
-      } else {
-        console.log("Api request failed");
-      }
-    } catch (error) {
-      console.error("Error fetching fact: ", error);
-    }
-  };
+				setFactData(factString);
+				return factString;
+			} else {
+				console.log("Api request failed");
+			}
+		} catch (error) {
+			console.error("Error fetching fact: ", error);
+		}
+	};
 
-  useEffect(() => {
-    const getCache = async () => {
-      try {
-        const cachedFact = await AsyncStorage.getItem("dailyFact");
-        if (cachedFact) {
-          setFactData(cachedFact);
-        } else {
-          fetchRandomFact();
-        }
-      } catch (error) {
-        console.error("Error getting cached fact: ", error);
-      }
-    };
+	useEffect(() => {
+		const getCache = async () => {
+			try {
+				const cachedFact = await AsyncStorage.getItem("dailyFact");
+				if (cachedFact) {
+					setFactData(cachedFact);
+				} else {
+					FetchRandomFact();
+				}
+			} catch (error) {
+				console.error("Error getting cached fact: ", error);
+			}
+		};
 
-    getCache();
-  }, []);
+		getCache();
+	}, []);
 
-  return { factData, refetchFact: fetchRandomFact };
+	return { factData, refetchFact: FetchRandomFact };
 }

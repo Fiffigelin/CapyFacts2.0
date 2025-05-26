@@ -9,7 +9,7 @@ export default function HomeScreen() {
 	const { style } = useHomeStyle();
 
 	return (
-		<View style={[style.background]}>
+		<View style={style.background}>
 			<CapyCard
 				id={newCapy?.id as string}
 				image={newCapy?.image as string}
