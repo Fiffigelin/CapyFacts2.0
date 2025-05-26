@@ -10,9 +10,9 @@ import {
 	TouchableWithoutFeedback,
 	View,
 	Text,
+	Platform,
 } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
-import { BlurView } from "expo-blur";
 import { useThemeContext } from "../context/ThemeContext";
 import { useTheme } from "react-native-paper";
 
@@ -21,8 +21,6 @@ export type RootTabScreens = {
 	//SplashScreen: undefined;
 	Home: undefined;
 	FavoritesTab: undefined;
-	// Todo: add settings screen
-	//Settings: undefined;
 };
 
 const Tabs = createBottomTabNavigator<RootTabScreens>();
@@ -85,14 +83,13 @@ export default function RootTabsNavigator() {
 							borderTopRightRadius: 20,
 						},
 						tabBarBackground: () => (
-							<BlurView
-								intensity={75}
+							<View
 								style={{
 									...StyleSheet.absoluteFillObject,
 									borderTopLeftRadius: 20,
 									borderTopRightRadius: 20,
 									overflow: "hidden",
-									backgroundColor: "transparent",
+									backgroundColor: colors.background,
 								}}
 							/>
 						),
