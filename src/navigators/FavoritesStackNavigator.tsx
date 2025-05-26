@@ -4,6 +4,8 @@ import FavoriteDetailScreen from "../screens/favorites/FavoriteDetailScreen";
 import FavoritesScreen from "../screens/favorites/FavoritesScreen";
 import { Capy } from "../types/Types";
 import { useTheme } from "react-native-paper";
+import NavigationStyle from "./hooks/useNavigationStyle";
+import useRootStyle from "../styles/useRootStyle";
 
 export type FavoriteStackScreens = {
 	Favorites: undefined;
@@ -13,14 +15,14 @@ export type FavoriteStackScreens = {
 const Stack = createNativeStackNavigator<FavoriteStackScreens>();
 
 export default function FavoritesStackNavigator() {
-	const { colors } = useTheme();
+	const { background } = useRootStyle();
+	const { StackHeaderStyle, StackHeaderTitleStyle, Root } = NavigationStyle();
+
 	return (
 		<Stack.Navigator
 			screenOptions={{
-				headerStyle: {
-					backgroundColor: colors.background,
-				},
-				headerTintColor: colors.onBackground,
+				headerStyle: StackHeaderStyle,
+				headerTintColor: Root.onBackground,
 				headerShadowVisible: false,
 			}}
 		>
@@ -34,10 +36,7 @@ export default function FavoritesStackNavigator() {
 				component={FavoriteDetailScreen}
 				options={{
 					title: "Back",
-					headerTitleStyle: {
-						color: colors.onBackground,
-						fontSize: 16,
-					},
+					headerTitleStyle: StackHeaderTitleStyle,
 				}}
 			/>
 		</Stack.Navigator>

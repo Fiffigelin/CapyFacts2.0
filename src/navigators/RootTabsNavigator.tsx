@@ -4,17 +4,10 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import React from "react";
 import HomeScreen from "../screens/HomeScreen";
 import FavoritesStackNavigator from "./FavoritesStackNavigator";
-import {
-	StyleSheet,
-	Switch,
-	TouchableWithoutFeedback,
-	View,
-	Text,
-	Platform,
-} from "react-native";
+import { Switch, TouchableWithoutFeedback, View, Text } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { useThemeContext } from "../context/ThemeContext";
-import { useTheme } from "react-native-paper";
+import NavigationStyle from "./hooks/useNavigationStyle";
 
 export type RootTabScreens = {
 	// Todo: add a splash screen
@@ -26,40 +19,22 @@ export type RootTabScreens = {
 const Tabs = createBottomTabNavigator<RootTabScreens>();
 
 export default function RootTabsNavigator() {
-	const { colors } = useTheme();
+	const { HeaderStyle, TabNav, Root } = NavigationStyle();
 
 	const Header = () => {
 		const { isDarkMode, toggleTheme } = useThemeContext();
+		const modeText = isDarkMode ? "Dark" : "Light";
+
 		return (
-			<View
-				style={{
-					flexDirection: "row",
-					position: "absolute",
-					top: 0,
-					right: 0,
-					alignItems: "center",
-					justifyContent: "flex-end",
-					paddingVertical: 20,
-					backgroundColor: "transparent",
-					zIndex: 10,
-				}}
-			>
-				<Text
-					style={{
-						color: colors.onBackground,
-						fontWeight: "bold",
-						fontSize: 16,
-					}}
-				>
-					{isDarkMode ? "Dark" : "Light"}
-				</Text>
+			<View style={HeaderStyle.headerContainer}>
+				<Text style={HeaderStyle.headerText}>{modeText}</Text>
 				<Switch
 					trackColor={{
-						false: colors.secondary,
-						true: colors.secondary,
+						false: Root.secondary,
+						true: Root.secondary,
 					}}
-					thumbColor={colors.primary}
-					style={{ margin: 10 }}
+					thumbColor={Root.primary}
+					style={HeaderStyle.margin10}
 					value={isDarkMode}
 					onValueChange={toggleTheme}
 				/>
@@ -74,25 +49,10 @@ export default function RootTabsNavigator() {
 				<Tabs.Navigator
 					screenOptions={{
 						tabBarShowLabel: false,
-						tabBarActiveTintColor: colors.primary,
-						tabBarInactiveTintColor: colors.secondary,
-						tabBarStyle: {
-							position: "absolute",
-							borderColor: "transparent",
-							borderTopLeftRadius: 20,
-							borderTopRightRadius: 20,
-						},
-						tabBarBackground: () => (
-							<View
-								style={{
-									...StyleSheet.absoluteFillObject,
-									borderTopLeftRadius: 20,
-									borderTopRightRadius: 20,
-									overflow: "hidden",
-									backgroundColor: colors.background,
-								}}
-							/>
-						),
+						tabBarActiveTintColor: Root.primary,
+						tabBarInactiveTintColor: Root.secondary,
+						tabBarStyle: TabNav.tabBar,
+						tabBarBackground: () => <View style={TabNav.tabBarBackground} />,
 					}}
 				>
 					<Tabs.Screen
@@ -101,15 +61,7 @@ export default function RootTabsNavigator() {
 						options={{
 							tabBarButton: (props) => (
 								<TouchableWithoutFeedback onPress={props.onPress}>
-									<View
-										style={{
-											flex: 1,
-											justifyContent: "center",
-											alignItems: "center",
-										}}
-									>
-										{props.children}
-									</View>
+									<View style={TabNav.tabBarButton}>{props.children}</View>
 								</TouchableWithoutFeedback>
 							),
 							headerShown: false,
@@ -130,19 +82,11 @@ export default function RootTabsNavigator() {
 						options={{
 							tabBarButton: (props) => (
 								<TouchableWithoutFeedback onPress={props.onPress}>
-									<View
-										style={{
-											flex: 1,
-											justifyContent: "center",
-											alignItems: "center",
-										}}
-									>
-										{props.children}
-									</View>
+									<View style={TabNav.tabBarButton}>{props.children}</View>
 								</TouchableWithoutFeedback>
 							),
-							title: "Favorites",
 							headerShown: false,
+							headerTitle: "",
 							tabBarShowLabel: true,
 							tabBarLabel: "Favorites",
 							tabBarIcon: ({ color, focused }) => (
