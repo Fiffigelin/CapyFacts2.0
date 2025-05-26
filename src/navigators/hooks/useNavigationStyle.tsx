@@ -32,6 +32,7 @@ const useNavigationStyle = () => {
 		headerText: {
 			fontWeight: "bold",
 			fontSize: 16,
+			color: onBackground,
 		},
 		margin10: {
 			margin: 10,

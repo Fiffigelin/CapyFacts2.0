@@ -12,7 +12,7 @@ import NavigationStyle from "./hooks/useNavigationStyle";
 export type RootTabScreens = {
 	// Todo: add a splash screen
 	//SplashScreen: undefined;
-	Home: undefined;
+	HomeTab: undefined;
 	FavoritesTab: undefined;
 };
 
@@ -56,7 +56,7 @@ export default function RootTabsNavigator() {
 					}}
 				>
 					<Tabs.Screen
-						name="Home"
+						name="HomeTab"
 						component={HomeScreen}
 						options={{
 							tabBarButton: (props) => (
