@@ -1,11 +1,10 @@
 import React, { useCallback, useState } from "react";
 import SmsModal from "../smsModal/SmsModal";
-import Snackbar from "../snackbar/Snackbar";
 import useCapyCardStyle from "./hooks/useCapyCardStyle";
 
 import { Feather, MaterialIcons } from "@expo/vector-icons";
 import { Text, TouchableOpacity, View } from "react-native";
-import { Card } from "react-native-paper";
+import { Card, Snackbar as SnackBar } from "react-native-paper";
 import { useFavoriteCapy } from "./hooks/useFavoriteCapy";
 
 type Props = {
@@ -15,8 +14,6 @@ type Props = {
 };
 
 export default function CapyCard({ id, image, fact }: Props) {
-	const [openModal, setOpenModal] = useState<boolean>(false);
-
 	const { style, error, primary } = useCapyCardStyle();
 	const { isFavorite, handleFavoriteToggle, alreadyFavorite } = useFavoriteCapy(
 		id,
@@ -24,8 +21,15 @@ export default function CapyCard({ id, image, fact }: Props) {
 		fact
 	);
 
+	const [openModal, setOpenModal] = useState<boolean>(false);
+	const [showSnackBar, setSnackBar] = useState<boolean>(alreadyFavorite);
+
 	const handleShowingModal = useCallback(() => {
 		setOpenModal((prev) => !prev);
+	}, []);
+
+	const handleShowSnackBar = useCallback(() => {
+		setSnackBar((prev) => !prev);
 	}, []);
 
 	return (
@@ -60,7 +64,22 @@ export default function CapyCard({ id, image, fact }: Props) {
 					fact={fact}
 				/>
 			</View>
-			{alreadyFavorite && <Snackbar props={alreadyFavorite} />}
+			{showSnackBar && (
+				<SnackBar
+					style={style.snackbarStyle}
+					visible={showSnackBar}
+					onDismiss={handleShowSnackBar}
+					action={{
+						label: "Close",
+						labelStyle: style.snackbarText,
+						onPress: handleShowSnackBar,
+					}}
+				>
+					<Text style={style.snackbarText}>
+						CapyCard already exists in favorites
+					</Text>
+				</SnackBar>
+			)}
 		</>
 	);
 }

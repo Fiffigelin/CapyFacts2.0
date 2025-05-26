@@ -1,8 +1,20 @@
-import { StyleSheet } from "react-native";
 import useRootStyle from "../../../styles/useRootStyle";
 
+import { StyleSheet } from "react-native";
+import { useBottomTabBarHeight } from "@react-navigation/bottom-tabs";
+
 export default function useFavoriteStyle() {
-	const { surface, onSurface, primary, error } = useRootStyle();
+	const {
+		background,
+		onBackground,
+		surface,
+		onSurface,
+		primary,
+		error,
+		tertiary,
+		onTertiary,
+	} = useRootStyle();
+	const bottomTabBarHeight = useBottomTabBarHeight();
 
 	const style = StyleSheet.create({
 		container: {
@@ -34,6 +46,13 @@ export default function useFavoriteStyle() {
 			flexDirection: "row",
 			padding: 10,
 			gap: 20,
+		},
+		snackbarStyle: {
+			marginBottom: bottomTabBarHeight,
+			backgroundColor: onBackground,
+		},
+		snackbarText: {
+			color: background,
 		},
 	});
 
