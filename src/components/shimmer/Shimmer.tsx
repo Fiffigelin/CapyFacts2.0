@@ -3,7 +3,7 @@ import { Animated, View, StyleSheet, Dimensions } from "react-native";
 import useShimmerStyle from "./hooks/useShimmerStyle";
 
 type Props = {
-	mode: "text" | "image" | "combined";
+	mode: "text" | "image" | "flat";
 	shimmerWidth?: number;
 	shimmerHeight?: number;
 };
@@ -53,6 +53,44 @@ export default function Shimmer({ mode, shimmerWidth, shimmerHeight }: Props) {
 							{ width: shimmerWidth },
 						]}
 					>
+						<View style={{ height: shimmerHeight }} />
+						<Animated.View
+							style={[
+								StyleSheet.absoluteFillObject,
+								styles.shimmer,
+								{ transform: [{ translateX }] },
+							]}
+						/>
+					</View>
+				);
+			case "flat":
+				return (
+					<View
+						style={[
+							styles.shimmerContainer,
+							styles.imageFlat,
+							{ width: shimmerWidth },
+						]}
+					>
+						<View style={{ height: shimmerHeight }} />
+						<Animated.View
+							style={[
+								StyleSheet.absoluteFillObject,
+								styles.shimmerFlat,
+								{ transform: [{ translateX }] },
+							]}
+						/>
+					</View>
+				);
+			default:
+				return (
+					<View
+						style={[
+							styles.shimmerContainer,
+							styles.image,
+							{ width: shimmerWidth },
+						]}
+					>
 						<View style={[styles.box, { height: shimmerHeight }]} />
 						<Animated.View
 							style={[
@@ -63,10 +101,6 @@ export default function Shimmer({ mode, shimmerWidth, shimmerHeight }: Props) {
 						/>
 					</View>
 				);
-			case "combined":
-				return <View style={styles.box} />;
-			default:
-				return <View />;
 		}
 	};
 

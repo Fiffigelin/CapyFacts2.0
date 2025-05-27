@@ -5,6 +5,7 @@ import { FavoriteStackScreens } from "../../navigators/FavoritesStackNavigator";
 import React from "react";
 import useFavoriteStyle from "./hooks/useFavoriteStyle";
 import FavoriteImage from "../../components/favoriteImage/FavoriteImage";
+import ShimmerFlatlist from "../../components/shimmer/ShimmerFlatlist";
 
 type FavoritesScreenProps = {
 	navigation: NativeStackNavigationProp<FavoriteStackScreens, "Favorites">;
@@ -26,26 +27,30 @@ export default function FavoritesScreen({ navigation }: FavoritesScreenProps) {
 
 	return (
 		<View style={favorite.container}>
-			<FlatList
-				alwaysBounceVertical={false}
-				data={chunkedCards}
-				renderItem={({ item }) => (
-					<View style={favorite.row}>
-						{item.map((favorite) => (
-							<TouchableOpacity
-								key={favorite.id}
-								onPress={() =>
-									navigation.navigate("Detail", {
-										selectedCard: favorite,
-									})
-								}
-							>
-								<FavoriteImage favorite={favorite} />
-							</TouchableOpacity>
-						))}
-					</View>
-				)}
-			></FlatList>
+			{favorites ? (
+				<FlatList
+					alwaysBounceVertical={false}
+					data={chunkedCards}
+					renderItem={({ item }) => (
+						<View style={favorite.row}>
+							{item.map((favorite) => (
+								<TouchableOpacity
+									key={favorite.id}
+									onPress={() =>
+										navigation.navigate("Detail", {
+											selectedCard: favorite,
+										})
+									}
+								>
+									<FavoriteImage favorite={favorite} />
+								</TouchableOpacity>
+							))}
+						</View>
+					)}
+				/>
+			) : (
+				<ShimmerFlatlist />
+			)}
 		</View>
 	);
 }
