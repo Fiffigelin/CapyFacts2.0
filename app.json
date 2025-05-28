@@ -8,8 +8,7 @@
 		"userInterfaceStyle": "automatic",
 		"splash": {
 			"image": "./assets/pngwing.png",
-			"resizeMode": "contain",
-			"backgroundColor": "#b48b83"
+			"resizeMode": "contain"
 		},
 		"assetBundlePatterns": ["**/*"],
 		"ios": {

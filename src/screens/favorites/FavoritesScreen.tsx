@@ -27,7 +27,7 @@ export default function FavoritesScreen({ navigation }: FavoritesScreenProps) {
 
 	return (
 		<View style={favorite.container}>
-			{favorites ? (
+			{favorites.length > 0 ? (
 				<FlatList
 					alwaysBounceVertical={false}
 					data={chunkedCards}

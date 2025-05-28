@@ -8,6 +8,7 @@ import { Switch, TouchableWithoutFeedback, View, Text } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { useThemeContext } from "../context/ThemeContext";
 import NavigationStyle from "./hooks/useNavigationStyle";
+import SplashScreen from "../screens/splash/SplashScreen";
 
 export type RootTabScreens = {
 	// Todo: add a splash screen
@@ -20,9 +21,9 @@ const Tabs = createBottomTabNavigator<RootTabScreens>();
 
 export default function RootTabsNavigator() {
 	const { HeaderStyle, TabNav, Root } = NavigationStyle();
+	const { isLoading, isDarkMode, toggleTheme } = useThemeContext();
 
 	const Header = () => {
-		const { isDarkMode, toggleTheme } = useThemeContext();
 		const modeText = isDarkMode ? "Dark" : "Light";
 
 		return (
@@ -42,7 +43,9 @@ export default function RootTabsNavigator() {
 		);
 	};
 
-	return (
+	return isLoading ? (
+		<SplashScreen />
+	) : (
 		<>
 			<Header />
 			<NavigationContainer>
@@ -86,7 +89,6 @@ export default function RootTabsNavigator() {
 								</TouchableWithoutFeedback>
 							),
 							headerShown: false,
-							headerTitle: "",
 							tabBarShowLabel: true,
 							tabBarLabel: "Favorites",
 							tabBarIcon: ({ color, focused }) => (
