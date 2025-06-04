@@ -49,8 +49,9 @@ export default function useFavoriteStyle() {
 			gap: 20,
 		},
 		snackbarStyle: {
-			marginBottom: bottomTabBarHeight,
+			marginBottom: bottomTabBarHeight - 25,
 			backgroundColor: onBackground,
+			zIndex: 9999,
 		},
 		snackbarText: {
 			color: background,

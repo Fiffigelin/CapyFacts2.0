@@ -16,7 +16,6 @@
     "expo-image": "~2.1.7",
     "expo-linear-gradient": "~14.1.4",
     "expo-sharing": "^13.1.5",
-    "expo-sms": "~13.1.4",
     "expo-status-bar": "~2.2.3",
     "react": "19.0.0",
     "react-dom": "19.0.0",
