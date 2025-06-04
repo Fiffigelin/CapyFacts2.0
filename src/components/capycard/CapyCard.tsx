@@ -1,5 +1,8 @@
-import React, { useCallback, useState } from "react";
-import SmsModal from "../smsModal/SmsModal";
+import React, { useCallback, useRef, useState } from "react";
+import * as FileSystem from "expo-file-system";
+import * as Sharing from "expo-sharing";
+import { captureRef } from "react-native-view-shot";
+
 import useCapyCardStyle from "./hooks/useCapyCardStyle";
 import Shimmer from "../shimmer/Shimmer";
 
@@ -22,21 +25,40 @@ export default function CapyCard({ id, image, fact }: Props) {
 		fact
 	);
 
-	const [openModal, setOpenModal] = useState<boolean>(false);
 	const [showSnackBar, setSnackBar] = useState<boolean>(alreadyFavorite);
-
-	const handleShowingModal = useCallback(() => {
-		setOpenModal((prev) => !prev);
-	}, []);
-
 	const handleShowSnackBar = useCallback(() => {
 		setSnackBar((prev) => !prev);
 	}, []);
 
+	const cardRef = useRef<View>(null);
+
+	const handleShare = async () => {
+		try {
+			if (!(await Sharing.isAvailableAsync())) {
+				alert("Sharing is not supported on this device");
+				return;
+			}
+
+			const uri = await captureRef(cardRef, {
+				format: "png",
+				quality: 1,
+			});
+
+			const fileUri = FileSystem.cacheDirectory + "CapyCard.png";
+			await FileSystem.copyAsync({ from: uri, to: fileUri });
+
+			await Sharing.shareAsync(fileUri, {
+				dialogTitle: "Share CapyCard",
+			});
+		} catch (error) {
+			console.error("Something went wrong when sharing ", error);
+		}
+	};
+
 	return (
 		<>
 			<View style={style.container}>
-				<Card style={style.cardContainer}>
+				<Card ref={cardRef} collapsable={false} style={style.cardContainer}>
 					{image ? (
 						<Card.Cover source={{ uri: image }} style={style.cardCover} />
 					) : (
@@ -52,6 +74,7 @@ export default function CapyCard({ id, image, fact }: Props) {
 						</Card.Content>
 					)}
 				</Card>
+
 				<View style={style.buttonContainer}>
 					<TouchableOpacity onPress={handleFavoriteToggle}>
 						{isFavorite ? (
@@ -65,16 +88,12 @@ export default function CapyCard({ id, image, fact }: Props) {
 							/>
 						)}
 					</TouchableOpacity>
-					<TouchableOpacity onPress={() => setOpenModal(true)}>
+					<TouchableOpacity onPress={handleShare}>
 						<Feather name="send" size={30} color={primary} />
 					</TouchableOpacity>
 				</View>
-				<SmsModal
-					visible={openModal}
-					onClose={handleShowingModal}
-					fact={fact}
-				/>
 			</View>
+
 			{showSnackBar && (
 				<SnackBar
 					style={style.snackbarStyle}

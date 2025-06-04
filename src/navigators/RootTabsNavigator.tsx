@@ -11,8 +11,6 @@ import NavigationStyle from "./hooks/useNavigationStyle";
 import SplashScreen from "../screens/splash/SplashScreen";
 
 export type RootTabScreens = {
-	// Todo: add a splash screen
-	//SplashScreen: undefined;
 	HomeTab: undefined;
 	FavoritesTab: undefined;
 };
